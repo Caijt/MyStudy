@@ -1,0 +1,60 @@
+命名空间
+using NPOI.HSSF.UserModel;
+
+读取EXCEL文件
+using(FileStream fs=new FileStream(@"d:\exl1.xls", FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+{
+	HSSFWorkbook workBook = new HSSFWorkbook(fs);
+	HSSFSheet Sheet= workBook.GetSheetAt(0);//获取第一个工作表
+	for (int i = 1; i <= Sheet.LastRowNum; i++)
+	{
+		HSSFRow row= Sheet.GetRow(i);//获取工作表里第2行数据行
+		HSSFCell cell = row.GetCell(1);//获取数据行里第2列的单元格数据
+		string value = cell.StringCellValue;//获取单元格里的字符串数据
+		DateTime date = cell.DateCellValue;//获取单元格里的日期数据
+		double dou = cell.NumericCellValue;//获取单元格里的数字数据
+	}
+
+
+}
+
+
+写入EXCEL文件
+
+HSSFWorkbook workbook = new HSSFWorkbook();//生成一个EXCEL对象
+HSSFSheet sheet= workbook.CreateSheet("123");//生成一个工作表
+HSSFRow row= sheet.CreateRow(0);//生成工作表的第一行
+HSSFCell cell = row.CreateCell(0,HSSFCell.CELL_TYPE_STRING);//创建第一行第一列的单元格
+cell.SetCellValue(123123);//给单元格赋值
+using (FileStream fs = new FileStream(@"d:\test.xls", FileMode.Create, FileAccess.Write,FileShare.ReadWrite))
+{
+	workbook.Write(fs);//生成EXCEL文件
+}
+
+
+HSSFWorkbook workbook = new HSSFWorkbook();
+            ISheet sheet = workbook.CreateSheet();
+            IRow titleRow = sheet.CreateRow(0);
+            foreach (DataGridViewColumn col in dgv.Columns)
+            {
+                if (col.Visible)
+                {
+                    titleRow.CreateCell(col.Index).SetCellValue(col.HeaderText);
+                }
+            }
+            foreach (DataGridViewRow row in dgv.Rows)
+            {
+                IRow excelRow=  sheet.CreateRow(row.Index+1);
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    if (cell.Visible)
+                    {
+                        excelRow.CreateCell(cell.ColumnIndex).SetCellValue(cell.Value.ToString());
+                    }
+                    
+                }
+            }
+            using (FileStream fs = new FileStream(fileName, FileMode.Create, FileAccess.Write))
+            {
+                workbook.Write(fs);
+            }

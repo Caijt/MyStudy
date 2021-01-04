@@ -1,0 +1,12 @@
+行内样式
+<input type="text" value="" style="color:red;"/>
+
+内嵌样式
+<style type="text/css">
+p
+{
+	color:red;
+	
+}
+外部样式
+<link href="" rel="stylesheet" type="text/css"/>

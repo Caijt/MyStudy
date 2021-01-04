@@ -1,0 +1,22 @@
+FileOutputStream outStream=android.content.Context.openFileOutput(filename,Context.MODE_PRIVATE);
+outStream.write(content.getBytes());
+outStream.close();
+
+getFileDir()获取软件包的files目录路径
+getCacheDir()获取
+
+/mnt/sdcard sd卡根路径
+Enviroment.getExternalStorageDirectory() 
+
+File file=new File("/mnt/sdcard",文件名);
+FileOutputStream fs=new FileOutputStream(file);
+fs.write();
+fs.close();
+
+判断SD卡状况
+Enviroment.getExtenalStorageState().equals(Enviroment.MEDIA_MOUNTED)
+Enviroment.MEDIA_MOUNTED 存在可写状态
+
+
+//内存卡写入权限
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>

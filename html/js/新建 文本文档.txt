@@ -1,0 +1,25 @@
+<script type="text/javascript"></script>
+
+alert();相当于messagebox.show();
+
+function 函数名(){
+}
+array万能集合
+var a=new array();
+var a=[1,1,1,1];
+var 1={"key":"value","key2":"value2","key3":"value3"};
+
+for(var i=0;i<;i++){
+}
+//相当于foreach a是arr1数组中的key值
+for(var a in arr1){
+}
+
+
+for(var c in 对象){
+}
+遍历对象里所有的成员
+
+扩展方法
+String.prototype.q=function( ){
+}

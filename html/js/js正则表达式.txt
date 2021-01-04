@@ -1,0 +1,7 @@
+var regex=new RegExp(正则表达式);
+var regex=/正则表达式/
+regex.test();
+
+var str="";
+str.match(regex);
+RegExp.$1

@@ -1,0 +1,122 @@
+color://元素内文本颜色
+transparent:透明颜色
+
+
+背景
+background:
+background-color:颜色//设置背景颜色
+background-image;url(路径);//设置背景图片
+background-repeat:方式(repeat-y,repeat-x,no-repeat)//设置背景图片平铺方式
+background-attachment:fixed//固定背景图不随滚动条滚动
+background-position:位置(center,left,right,top,bottom)//设置背景图片位置
+
+
+文本
+text-indent:值//文本首行缩行
+text-align:对齐(center,left,right,justify两端对齐)//设置文齐方式
+text-transform:capitalize首字母大写,lowercase全部小写,uppercase全部大写//设置元素内的字母大小写
+text-decoration:(none,underline,overline,line-through,blink)//设置文本装饰
+word-spacing:值//设置单词间隔
+letter-spacing:值//设置字母间隔
+white-space:(pre,pre-wrap保留空格与换行,pre-line合并空格，但保留换行)//处理空格字符
+direction:(ltr左,rtl右)//文本方向
+
+字体
+font:
+font-style:斜体(italic,oblique)//规定斜体文本
+font-variant:small-caps//设定不同大小的大写字母
+font-weight:值(bold粗体,100~900)//设置文本粗细
+font-size://设置字体大小
+font-family:通用字体 特定字体//
+
+链接
+a:link //普通、未访问的链接
+a:visited //访问过的链接
+a:hover //鼠标指针位于链接上方
+a:active //被点击时
+
+列表
+list-style:
+list-style-type:square方块,none无//设置li前面的标志图形
+list-style-image:url()//设置li的标志图片
+list-style-position:inside 标志在li里面//
+
+边框
+border: //设置元素四个边框
+border-color: //设置元素四个边框颜色
+border-style: //设置元素四个边框样式
+border-width: //设置元素四个边框粗细
+border-spacing://边框之间的间隔
+border-collapse:collapse//设置表格边框折叠为单一边框
+单一边框设置(bottom下，top上，left左,right,右)以下用*代表
+border-*://设置元素边框
+border-*-color://设置元素边框颜色
+border-*-style://设置元素边框样式
+border-*-width://设置元素边框粗细
+
+元素轮廓
+outline:
+outline-color://
+outline-style:
+outline-width:
+
+元素模型：内边距包围元素，外边距包围内边距
+
+元素:
+width:
+height:
+line-height:
+max-height:
+min-height:
+max-width:
+min-height:
+
+position:(relative相对原来的位置；absolute绝对定位，相对文档坐标； fixed固定定位) //元素定位
+left:right:top:bottom://设置元素位置
+overflow:(auto出现滚动条 scroll无论是否溢出都出现滚动条 hidden隐藏溢出内容)//当元素内容溢出元素时的处理方式
+clip:rect(距上边框,距左边框,距上边框,距左边框)//剪切元素
+Z-index://设置元素的堆叠顺序
+vertical-align://元素的垂直对齐方式
+
+float://元素浮动
+clear://不允许其它浮动元素
+
+元素对齐
+//用外边距居中对齐
+margin-left:auto;
+margin-right:auto;
+
+//用绝对定位右对齐
+position:absolute;
+right:0px;
+
+//float右对齐
+float:right;
+
+cursor:(pointer手)//鼠标经过的指针类型
+display:(none不显示不占用空间)//元素显示类型
+visibility:(hidden隐藏会占用空间)// 
+opacity:0.4;//透明度
+filter:alpha(opacity=40); 
+
+内边距:
+padding:
+padding-*:(*:bottom top left right)
+外边距:注外边距会发生合并
+margin:
+margin-*:(*:bottom top left right)
+
+
+伪类
+:focus //元素获得焦点时样式
+:first-child //第一个元素添加样式
+:lang() //
+
+伪元素
+:first-letter //元素第一个字母
+:first-line //元素第一行
+:before //元素之前添加内容
+:after //元素之后添加内容
+
+
+

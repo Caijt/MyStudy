@@ -1,0 +1,36 @@
+访问 IIS 元数据库失败 的解决方法
+分类： vs 安装常见问题 2011-07-15 11:26 4291人阅读 评论(3) 收藏 举报
+iis数据库asp.netstringmicrosoftwindows
+系统是windows xp sp3，vs2010。安装了iis 5.1 ，创建了虚拟目录之后copy进去一个web sercices测试下能不能正常工作。
+出现如下问题：
+ 
+访问 IIS 元数据库失败。 
+说明: 执行当前 Web 请求期间，出现未处理的异常。请检查堆栈跟踪信息，以了解有关该错误以及代码中导致错误的出处的详细信息。
+异常详细信息: System.Web.Hosting.HostingEnvironmentException: 访问 IIS 元数据库失败。
+用于运行 ASP.NET 的进程帐户必须具有对 IIS 元数据库(如 IIS://servername/W3SVC)的读访问权。有关如何修改元数据库权限的信息，请参见 http://support.microsoft.com/?kbid=267904。
+源错误:
+执行当前 Web 请求期间生成了未处理的异常。可以使用下面的异常堆栈跟踪信息确定有关异常原因和发生位置的信息。
+堆栈跟踪: 
+[HostingEnvironmentException: 访问 IIS 元数据库失败。]
+   System.Web.Configuration.MetabaseServerConfig.MapPathCaching(String siteID, VirtualPath path) +690    System.Web.Configuration.MetabaseServerConfig.System.Web.Configuration.IConfigMapPath.MapPath(String siteID, VirtualPath vpath) +9
+   System.Web.Hosting.HostingEnvironment.MapPathActual(VirtualPath virtualPath, Boolean permitNull) +174
+   System.Web.CachedPathData.GetConfigPathData(String configPath) +398
+   System.Web.CachedPathData.GetConfigPathData(String configPath) +263
+   System.Web.CachedPathData.GetVirtualPathData(VirtualPath virtualPath, Boolean permitPathsOutsideApp) +166
+   System.Web.Configuration.RuntimeConfig.GetLKGRuntimeConfig(VirtualPath path) +187
+--------------------------------------------------------------------------------
+版本信息: Microsoft .NET Framework 版本:2.0.50727.42; ASP.NET 版本:2.0.50727.42
+
+ 
+ 
+百度了下，多数解决方法是
+1、打开CMD，进入 C:/WINDOWS/Microsoft.NET/Framework/v2.0.50727
+2、输入 aspnet_regiis.exe -i
+理由是先安装了vs后安装iis的情况下需要重新注册.net framework ，符合情况。
+照做，但是问题没解决。
+ 
+发现了这句话：
+注意：如果您正在使用 ASP.Net 2.0 且您必须授予 Windows 用户帐户元数据库权限，请不要使用 MetaAcl 工具。而是运行带 -ga 选项的 ASP.NET IIS 注册工具命令。例如，以下命令将向 Windows 用户帐户授予对 IIS 元数据库的 <WindowsUserAccount> 权限：
+aspnet_regiis -ga <WindowsUserAccount>
+看到希望了，方法明确指向错误提示中的“用于运行 ASP.NET 的进程帐户必须具有对 IIS 元数据库(如 IIS://servername/W3SVC)的读访问权”这句话， 进入 C:/WINDOWS/Microsoft.NET/Framework/v2.0.50727  将<WindowsUserAccount>  替换为aspnet，即执行aspnet_regiis -ga aspnet命令，成功。
+再次访问服务，错误消失。

@@ -1,0 +1,11 @@
+static class StringHelper()
+{
+	public static string a(this string a)
+	{
+		string b=a+1;
+		return b;
+	}
+}
+
+string str="";
+str.a();

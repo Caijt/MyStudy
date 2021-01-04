@@ -1,0 +1,24 @@
+MediaPlayer mediaPlayer=new MediaPlayer();
+File file=new File(Environment.getExternalStorageDirectory(),"文件名");
+mediaPlayer.reset();
+mediaPlayer.setDataSource(file.getAbsolutePath());
+mediaPlayer.prepare();
+mediaPlayer.setOnPreparedListener(new PrepareListen);//设置缓冲完调用事件
+mediaPlayer.pause();
+mediaPlayer.start();
+
+mediaPlayer.isPlaying();//判断是否在播放中
+
+//重播
+mediaPlayer.seekTo(0);
+
+//停止
+mediaPlayer.stop();
+
+//销毁
+mediaPlayer.release();
+private final classPrepareListener implements OnPreparedListener{
+	public void onPrepared(MediaPlayer mp){
+		mediaPlayer.start();
+	}
+}

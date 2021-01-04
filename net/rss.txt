@@ -1,0 +1,13 @@
+根节点 rss命名
+
+<rss>
+<channel>
+<title>频道的名字</title>
+<item>
+<title><![CDATA[新闻标题]]></title>
+<link>新闻链接</link>
+<description>新闻描述</description>
+<pubDate>新闻日期</pubDate>
+</item>
+</channel>
+</rss>

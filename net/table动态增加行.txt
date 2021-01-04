@@ -1,0 +1,5 @@
+
+.insertRow(-1)//增加行
+var cell0 = row.insertCell(-1);//在行里增加列
+
+.deleteRow(i)//删除行

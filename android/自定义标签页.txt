@@ -1,0 +1,65 @@
+<TabHost
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:id="@+id/tabHost"	
+>
+	<LinearLayout
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		android:orientation="vertical"
+	>
+		<TabWidget
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:id="@android:id/tabs" //必须这样定义它的ID
+		/>
+		<FrameLayout
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:id="@android:id/tabcontent" //必须这样定义它的ID
+		>
+			<LinearLayout
+				android:layout_width="fill_parent"
+				android:layout_height="fill_parent"
+				android:id="@+id/page1"
+			>
+				<TextView
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					android:text="第一个标签页"
+				/>
+			</LinearLayout>
+			<LinearLayout
+				android:layout_width="fill_parent"
+				android:layout_height="fill_parent"
+				android:id="@+id/page1"
+			>
+				<TextView
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					android:text="第二个标签页"
+				/>
+			</LinearLayout>
+		</FrameLayout>
+	</LinearLayout>
+</TabHost>
+
+TabHost tabHost=(TabHost)this.findViewById(R.id.tabHost);
+tabHost.setup();
+
+TabSpec tabSpec=tabHost.newTabSpec("page1");
+tabSpec.setIndicator("第一页",getResources().getDrawable(R.drawable.image1));//设置标签头
+tabSpec.setContent(R.id.page1);
+tabHost.addTab(tabSpec);
+
+tabHost.setCurrentTab(0);
+
+
+
+//自定义标签页
+在layout里新建一个布局xml
+View tabView=getLayoutInflater().infalte(R.layout.,null);
+tabSpec.setIndicator(tabView);
+
+

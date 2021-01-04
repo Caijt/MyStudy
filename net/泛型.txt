@@ -1,0 +1,54 @@
+
+//泛型类
+class FanXin<T>
+{
+	//类里所有类型都可以用T代替
+	public T Data {get;set;}
+	public T GetData()
+	{
+		return Data;
+	}
+}
+
+//泛型方法
+class FanXin2
+{
+	public T Hello<T>(T in)
+	{
+		T b=in;
+		Console.WriteLine(b.ToString());
+	}
+}
+
+//泛型委托
+delegate void MyDelegate<T> (T i1,T i2);
+
+
+MyDelegate<string> md=h1;
+
+void h1(string s1,string s2)
+{
+	
+}
+
+//系统定义的事件泛型委托
+delegate void EventHandler<T> (object sender,T e) 
+
+//T必须是继承EventArgs的子类
+
+//泛型的约束，适合于方法、类、委托
+
+static List<T> CreateList<T>(int n) where T:new()//约束T必须是有无参的构造的函数
+{
+	
+}
+
+class PersonList<T> where T:Person//约束T必须是继承于Person类的子类
+{
+}
+
+int? 其实是Nullable<T>
+
+
+Lazy<T> 懒对象。在使用时才new
+

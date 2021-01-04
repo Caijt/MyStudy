@@ -1,0 +1,34 @@
+listView.setOnScrollListener(new ScrollListener());//设置listView滚动条的监听事件
+List<String> data=;//取得数据
+ArrayAdapter<String> adapter=new ArrayAdapter<String>(this,R.layout.listView_item,R.id.textView,data);
+
+View footView=getLayoutInflater().inflate(R.layout.,rull);
+listView.addFooterView(footView);//页脚必须在setAdapter()方法之前调用这个方法
+listView.setAdapter(adapter);
+listView.removeFooterView(footView);
+private final class ScrollListener implements OnScrollListener{
+	public void onScrollStateChanged(AbsListView view,int scrollState){
+		//scrollStat为0时为停止滚动；1；在拖动；2为停止拖动，但还没停止
+	}
+	public void onScroll(AbsListView view,int firstVisibleItem,int visibleItemCount,int totalItemCount){
+		if(totalItemCount==0)return;//0时不执行
+		int lastItemId=view.getLastVisiblePosition();
+		if((lastItemId+1)==totalItemCount){//达到最后一条记录
+			listView.addFooterView(footView);
+			new Thread(new Runnable(){
+				public void run(){
+					//取数据
+					handler.sendMessage(handler.obtainMessage(100,));
+				}		
+			}).start();
+		}
+	}
+}
+
+Handler handler=new Handler(){
+	public void handleMessage(Message msg){
+		data.addAll((List<String>)msg.obj);
+		adapter.notifyDataSetChanged();
+		listView.removeFooterView(footView);
+	}
+};

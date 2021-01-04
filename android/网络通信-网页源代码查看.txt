@@ -1,0 +1,26 @@
+业务代码
+
+public String getHtmlCode(String u){
+	URL url=new URL(u);
+	HttpURLConnection conn= url.openConnection();
+	conn.setConnectTimeout(5000);//设置超时时间
+	conn.setRequestMethod("GET");
+	if(conn.getResponseCode==200){
+		InputStream inStream= conn.getInputStream();
+		ByteArrayOutputStream outStream=new ByteArrayOutputStream();
+		byte[] buffer=new byte[1024];
+		int len=0;
+		while((len=inStream.read(buffer))!=-1){
+			outStream.write(buffer,0,len);
+		}
+		inStream.close();
+		String html=new String(outStream.toByteArray(),"UTF-8");
+		return html;
+	}	
+}
+
+
+String data=getHtmlCode("http://golden-glass.com/g.jpg");
+
+访问网络权限
+<uses-permission android:name="android.permission.INTERNET"/>

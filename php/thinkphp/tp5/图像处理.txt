@@ -1,0 +1,10 @@
+$image=\think\Image::open('./image.png');//从本地加载图片
+$image=\think\Image::open(request()->file('image'));//从上传对象中加载图片
+
+$width=$image->width();//获取图片宽度
+$height=$image->height();//获取图片高度
+
+$size=$image->size();//获取图片大小
+
+$image->thumb(200,200,\think\Image::THUMB_CENTER);//居中缩略图
+$image->save();//保存在本地

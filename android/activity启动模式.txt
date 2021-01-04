@@ -1,0 +1,9 @@
+<android:launchMode="standard"/>默认模式
+singleTop //在任务栈顶上就会调用该实例，不在栈顶就会重新创建
+singleTask //
+singleInstance //单例
+
+//每次重新调用实例时就会调用此方法
+protected void onNewIntent(Intent intent){
+	super.onNewIntent(intent);
+}

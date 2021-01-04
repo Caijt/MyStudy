@@ -1,0 +1,50 @@
+ 网页中不同的ContentType 会影响客户端所看到的效果.默认的ContentType为 text/html 也就是网页格式.
+
+以下为一些常用的 ContentType :(经过测试成功的)
+--------------------------------------------------------------
+显示为网页
+<% response.ContentType ="text/html" %> 
+--------------------------------------------------------------
+显示html原代码，也就是txt
+<% response.ContentType ="text/plain" %> 
+--------------------------------------------------------------
+TIFF images ，并可下载
+<% response.ContentType ="image/tiff" %> 
+--------------------------------------------------------------
+MICROSOFT EXCEL document ，并可下载
+<% Response.ContentType = "application/vnd.ms-excel" %> 
+--------------------------------------------------------------
+MICROSOFT WORD document  ，并可下载
+<% response.ContentType ="application/msword" %> 
+--------------------------------------------------------------
+
+ 
+
+ 
+
+今天在补充一点：
+
+"text/plain"这个格式是txt文件，可是浏览时它是在网页中打开的，不能下载。
+
+我搜罗的很多资料，最后终于找到方法了，下面的方法可以打开ie的弹出下载框。
+
+//文件名
+String filename = (String)request.getParameter("filename");
+
+//动态设置浏览器头信息，使ie弹出下载框，filename就是要下载文件的名称。
+response.setHeader("Content-Disposition","attachment;filename = " + filename);
+
+例如：
+a.jsp
+
+
+<%@page pageEncoding="GB2312" contentType="text/plain; charset=GB2312"
+%><%
+String filename = (String)request.getParameter("filename");
+response.setHeader("Content-Disposition","attachment;filename = " + filename);
+
+out.println("hello world!");
+%>
+
+
+注意上面“%><%”的写法，如果写成“<%%>”这样的话，下载后的文件中会多出一行，这点一定要注意！

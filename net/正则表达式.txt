@@ -1,0 +1,36 @@
+元字符
+. 任何单个字符 b.g=>big bug
+[] 括号中任何一个字符 b[aui]=>bug big bag [A-Za-z0-9]=>任何的一个大小写字母或数字
+() 
+| 或 (z|f)ood=>zood food
+* 匹配0到多个在它前面的字符 zo*=>zo zoo zooo z(b|c)*=>zbc zcb zbbb  
++ 匹配1到多个在它前面的字符 a9+=>a9 a99
+? 匹配0到1个在它前面的字符 ab?=>a ab
+{n} 匹配n个在它前面的字符 zo{2}=>zoo 
+{n,} 匹配至少n个在它前面的字符 zo{2,}=>zoo zoooo
+{n,m} 匹配n到m个在它前面的字符 zo{2,4}=>zoo zoooo
+^ 匹配开始 ^abc=>abcdef
+$ 匹配结束 abc$=>123abc
+
+简写
+\d 匹配一个数字 相当于[0-9]
+\D 匹配一个非数字 相当于[^0-9]
+\s 代表换行符、Tab制表符等空白字符
+\S 代表非空白字符
+\w 匹配字母或数字或下划线或汉字
+\W 
+
+g (全文查找出现的所有 pattern)
+
+　　i (忽略大小写)
+
+　　m (多行查找)
+
+
+
+js
+.match() //返回单个匹配项目和子项目，加g则只返回全部匹配项目
+
+.exec()//每次返回单次匹配项目和子项目 用while循环
+match、exec、test、search、replace、split
+\d+\.\d*

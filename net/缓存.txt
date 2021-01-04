@@ -1,0 +1,41 @@
+页面缓存
+在页面加入指令集
+<%@ OutputCache Duration="10"(缓存时间10秒) VaryByParm="none"(根据url参数缓存none表示忽略参数)%>
+VaryByParm="id,name";// 多个属性,为每个属性建立缓存"*"
+//以第一次访问计算失效时间 
+//缓存期间访问页面时不会被实例化
+
+
+数据源缓存
+在ObjectDataSource属性中设置
+EnableCaching=true;
+CacheDuration=10;缓存时间
+CacheExpirationPolicy //设置是以最后访问时间计算缓存时间还是绝对时间
+//缓存期间访问页面时会被实例化，但数据会从缓存中读取
+CacheExpirationPolicy
+
+手动设置缓存
+HttpRuntime.Cache[""]= //
+Cache.Insert("缓存键","值",null,DataTime.Now.AddHours(1)) //缓存保存1个小时
+
+缓存依赖
+文件依赖
+CacheDependency cdep=new CacheDependecy("文件路径");//创建一个缓存依赖对象
+Cache.Add("键","值",cdep,Cache.NoAbsoluteExpiration,Cache.NoSlidingExpiration,CacheItemPriority.Normal,委托) //
+委托签名void (string key,object value,CacheItemRemovedReason);
+
+数据库依赖(轮询机制/通知机制)
+新建一个版本表，对需缓存的表创建触发器，修改时对版本表进行修改
+aspnet_regsql -s . -e -ed -d 数据库名 -et -t 版本表名//注册
+aspnet_regsql -s . -e -d 数据库名 -dt -t 版本表名//删除
+aspnet_regsql -s . -e -d 数据库名 -lt//列出已注册表
+配置web.config增加caching标签
+<system.web>
+<caching>
+<sqlCacheDependency enabled="true">
+<databases>
+<add name="DBName" connectionStringName="conStr" pollTime="" />
+</databases>
+</sqlCacheDependency>
+</caching>
+SqlCacheDependency sqlDep=new SqlCacheDependency("DBName","表名");//创建数据库缓存依赖对象

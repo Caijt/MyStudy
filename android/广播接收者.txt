@@ -1,0 +1,53 @@
+//拦截短信
+public class myBroadcastReceiver extends BroadcastReceiver{
+
+	public void onReceive(Context context,Intent,intent){
+		Object[] pdus=(Object[]) intent.getExtras().get("pdus");//短信内容
+		for(Object o :pdus){
+			byte[] pdu=(byte[])p;
+			SmsMessage message=SmsMessage.createFromPdu(pdu);
+			String content= message.getMessageBody();//取得短信内容
+			Date date= new Date(message.getTimestampMillis());
+			SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String receivetime=format.format(date);
+			String senderNumber=message.getOriginatinAddress();//取得发送人
+			abortBroadcast();//终止广播
+		}
+	}
+}
+
+
+
+清单文件
+<receiver android:name=".myBroadcastReceiver">
+<intent-filter android:priority="1000"优先级别 >
+	<action android:name="android.provider.Telephony.SMS_RECEIVD"/>
+</intent-filter>
+</receiver>
+android.provider.Telephony.SMS_RECEIVD //短信意图
+
+普通广播 有序广播
+
+
+//电话拦截
+
+清单文件
+<receiver android:name=".phoneBroadcastReceiver">
+<intent-filter android:priority="1000"优先级别 >
+	<action android:name="android.intent.action.NEW_OUTGOING_CALL"/>
+</intent-filter>
+</receiver>
+//权限
+<uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS"/>
+public class phoneBroadcastReceiver extends BroadcastReceiver{
+
+	public void onReceive(Context context,Intent,intent){
+		 String number=getResultData();//取得电话号码
+		number="";
+		setResultData();//将修改的电话号码传给电话接收者
+		
+	}
+}
+
+广播接收者如果在10秒内无法处理就会出错，
+不能用子线程处理

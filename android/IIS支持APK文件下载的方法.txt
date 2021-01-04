@@ -1,0 +1,16 @@
+默认把安卓手机应用或游戏的apk格式文件上传到服务器空间是不能直接下载的，这是因为IIS的默认MIME类型中没有.apk文件，所以无法下载。@VCOO 
+既然.apk无法下载是因为没有MIME，那么添加一个MIME类型就可以了。 
+让IIS支持.apk文件下载的方法： 
+【IIS6】 
+1）打开IIS服务管理器，找到服务器，右键-属性，打开IIS服务属性； 
+2）单击MIME类型下的“MIME类型”按钮，打开MIME类型设置窗口； 
+3）单击“新建”，建立新的MIME类型； 
+4）扩展名中填写".apk",MIME类型中填写"application/vnd.android.package-archive" 
+5）单击“确定”保存设置。 
+6）重启IIS，使设置生效。 
+【IIS7、IIS7.5】 
+1）打开IIS服务管理器，左边点到计算机（也可设置特定网站） 
+2）右边功能项中找到MIME类型，双击打开。 
+3）右键“添加” 
+4）扩展名中填写".apk",MIME类型中填写"application/vnd.android.package-archive" 
+5）确定后重启IIS生效。

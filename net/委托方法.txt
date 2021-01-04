@@ -1,0 +1,10 @@
+delegate func(int i);
+
+func c=delegate(){}
+
+
+
+(s)=>{return s+2;};¼òÐ´
+ÔÙ¼òÐ´
+s=>s+2;
+

@@ -1,0 +1,13 @@
+Application_Start//网站第一次被访问时
+Application_End//网站关闭时运行
+Application_Error//出现异常时运行
+Session_Start//每次创建Session时运行
+Session_End//每一个Session对象被销毁时运行
+ 
+
+<customErrors mode="On" defaultRedirect="">
+<error statusCode="404" redirect=""/>
+</customErrors>
+
+HttpContext.Current.Server.GetLastError()//取得异常错误对象
+在customErrors标签里加上redirectMode="ResponseRewrite"//设置这样才能抓到异常对象

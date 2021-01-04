@@ -1,0 +1,14 @@
+LinearLayout linearLayout=new LinearLayout(this);
+linearLayout.setOrientation(LinearLayout.VERTICAL);
+TextView textView=new TextView(this);
+textView.setText(R.string.hello);
+ViewGroup.LayoutParams textViewParams=new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+
+linearLayout.addView(textView,textViewParams);//将子控件添加到线性布局控件
+
+ViewGroup.LayoutParams layoutParams=new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT,ViewGroup.LayoutParams.FILL_PARENT);
+setContentView(linearLayout,layoutParams);//
+
+
+LayoutInflater inflater=(LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+return infalter.inflater(R.layout.part,null);

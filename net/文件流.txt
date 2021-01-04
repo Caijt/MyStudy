@@ -1,0 +1,39 @@
+命名空间
+using System.IO;
+
+使用文件流
+using(FileStream fs=new FileStream(文件位置字符串,操作枚举,操作枚举,共享方式枚举))
+{
+}
+
+读取器
+using(StreamReader sr=new StreamReader(文件流,编码枚举))
+{
+}
+
+写入器
+using(StreamWriter sw=new StreamWriter(文件流,编码枚举))
+{
+}
+
+
+
+读取文件
+using(FileStream fs = new FileStream(dialogOpen.FileName, FileMode., FileAccess.Read, FileShare.ReadWrite))
+{
+	using(StreamReader sr=new StreamReader(fs.Encoding.Default))
+	{
+		string text=sr.ReadToEnd();
+	}	
+}
+
+
+写入文件
+using(FileStream fs = new FileStream(dialogSave.FileName,FileMode.Create,FileAccess.Write))
+{
+	using(StreamWriter sw = new StreamWriter(fs, Encoding.Default))
+	{
+		sw.Write(text);
+	}
+}
+

@@ -1,0 +1,11 @@
+<appSettings>
+
+<add key="" value=""/>
+
+</appSettings>
+
+using System.Configuation;
+
+
+string conFig=ConfigurationgManager.AppSettings[""]
+

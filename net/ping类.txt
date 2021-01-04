@@ -1,0 +1,43 @@
+还有一种方法是通过API调用Ping程序,也非常麻烦,需要导入Dll,还要对返的结果做出分析,而且程序运行时会弹出CMD窗体,非常不友好.
+
+其实我们可以利用C#中的Ping类来实现这一功能:
+
+首先引入 using System.Net.NetworkInformation;命名空间
+
+声明一个Ping对像:
+
+Ping myPing = new Ping();
+
+设置Ping选项
+
+PingOptions myOptions = new PingOptions();
+
+MyOptions.DontFragment = true;//允许数据分段,还有一个TTL选项
+
+//创建一个32B的缓冲区
+
+string data = "abcdefghijklmnopqrstuvwxy123456";
+
+byte[] buff = Encoding.ASCII.GetBytes(data);
+
+Ping回复结果:
+
+PingReply myPingReply = myPing.Send("远程IP",超时时间,缓冲大小,Ping选项);
+
+最后判断一下是否功功即可:
+
+if(myPingReply.Status == IPStatus.Success)
+
+{
+
+//your code
+
+}
+
+
+
+
+using System.Net;
+
+Dns.GetHostAddresses(targetIp)//获取域名IP
+

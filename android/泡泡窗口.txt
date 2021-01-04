@@ -1,0 +1,25 @@
+View contentView= getLayoutInflater().inflate(R.layout.popWindow,null);
+GridView gridView= (GridView)contentView.findViewById(R.id.gridView);
+gridView.setAdapter();
+gridView.setOnItemClickListener();//设置单击事件
+
+
+PopupWindow popupWindow=new PopupWindow(contentView,ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+popupWindow.showAsDropDown(View v);//相对某个控件的位置，正左下方
+//showAsDropDown(View v,int x,int y)//相对某个控件的位置
+//showAtLocation(View parent,int gravity,int x,int y)//在父窗口的位置
+//Gravity.CENTER//正中间
+//Gravity.BOTTOM
+//Gravity.RIGHT|Gravity.BOTTOM//右下方
+
+ 
+popupWindow.setFocusable(true);//获得焦点
+popupWindow.setBackgroundDrawable(new BitmapDrawable());//点击其它地方就会消失
+popupWindow.setAnimationStyle(R.style.);//设置进出样式动画
+dismiss()//关闭
+
+//进出样式
+<style name="">
+	<item name="android:windowEnterAnimation">@anim/</item>
+	<item name="android:windowExitAnimation">@anim/</item>
+</style>

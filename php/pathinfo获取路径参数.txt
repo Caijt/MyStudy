@@ -1,0 +1,1 @@
+pathinfo('路径',PATHINFO_EXTENSION);//获取文件扩展名

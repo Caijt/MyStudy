@@ -1,0 +1,11 @@
+
+//文字国际化
+在res下新建values-zh是中文
+values-en英文
+
+values-en-rUS美式英语
+
+//图片国际化
+drawable-zh
+
+drawable-en 

@@ -1,0 +1,59 @@
+1. 使用file_get_contents 和 file_put_contents 方法下载远程图片：
+
+<?php
+	function download_remote_file($file_url, $save_to)
+	{
+		$content = file_get_contents($file_url);
+		file_put_contents($save_to, $content);
+	}
+?>
+实例：
+
+<?php
+	download_remote_file('http://www.54ux.com/wp-content/themes/d-simple/img/thumbnail.jpg', realpath("./downloads") . '/file.jpg');
+?>
+2.使用php CURL 下载远程图片
+
+<?php
+	function download_remote_file_with_curl($file_url, $save_to)
+	{
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_POST, 0); 
+		curl_setopt($ch,CURLOPT_URL,$file_url); 
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+		$file_content = curl_exec($ch);
+		curl_close($ch);
+ 
+		$downloaded_file = fopen($save_to, 'w');
+		fwrite($downloaded_file, $file_content);
+		fclose($downloaded_file);
+ 
+	}
+?>
+实例：
+
+<?php
+	download_remote_file_with_curl('http://www.54ux.com/wp-content/themes/d-simple/img/thumbnail.jpg', realpath("./downloads") . '/file.jpg');
+?>
+3. 使用 fopen 下载远程图片：
+
+<?php
+	function download_remote_file_with_fopen($file_url, $save_to)
+	{
+		$in=    fopen($file_url, "rb");
+		$out=   fopen($save_to, "wb");
+ 
+		while ($chunk = fread($in,8192))
+		{
+			fwrite($out, $chunk, 8192);
+		}
+ 
+		fclose($in);
+		fclose($out);
+	}
+?>
+实例：
+
+<?php
+	download_remote_file_with_fopen('http://www.54ux.com/wp-content/themes/d-simple/img/thumbnail.jpg', realpath("./downloads") . '/file.jpg');
+?>

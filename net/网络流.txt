@@ -1,0 +1,16 @@
+WebClient wc=new WebClient();
+Stream stream=wc.OpenRead("url");网络流
+
+Stream menStream=new MemoryStream();//内存流
+using(stream)
+{
+	byte[] bytes=new byte[1024];
+	int readByte;
+	while(readByte=stream.read(bytes,0,byte.Length)
+	{
+		.Write(bytes,0,readByte);
+	}
+}
+
+网络流不支持指针后退
+内存流支持指针后退

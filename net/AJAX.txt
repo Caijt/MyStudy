@@ -1,0 +1,64 @@
+function Ajax(){
+ var xmlHttp=null;
+
+ try{
+
+ // Firefox, Opera 8.0+, Safari
+
+ xmlHttp=new XMLHttpRequest();}
+
+ catch (e){
+
+ // Internet Explorer
+
+ try{
+
+ xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");}
+
+ catch (e){
+
+ xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");}}
+
+ return xmlHttp;
+
+ }
+
+
+
+
+AJAX异步对象创建方式
+var xmlRequest=new XMLHttpRequest();//创建异步对象
+var xmlRequest=new ActiveObject("Microsoft.XMLHTTP");//在IE5/IE6创建异步对象
+
+异步对象基本方式
+xmlRequest.abort();//取消请求
+xmlRequest.open();//
+xmlRequest.send();//
+
+
+
+GET方式
+xmlRequest.open("GET","url",true);
+xmlRequest.send(null);
+
+POST方式
+xmlRequest.open("POST","url",true);
+xmlRequest.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+xmlRequest.send("键=值&键2=值2");
+
+xmlRequest.setRequestHeader("If-Modified-Since","0");//设置不用缓存POST默认不用缓存
+
+异步对象属性
+xmlRequest.readyState //异步对象状态属性:0:示初始化;1:打开;2:发送;3:正在接收;4:已加载;
+xmlRequest.onreadystatechange //设置异步对象回调事件
+xmlRequest.responseText //返回字符串HTTP响应
+xmlRequest.responseXML //返回XML对象HTTP响应
+xmlRequest.status //返回HTTP状态码
+
+如果报文里有中文 需要用encodeURI对URL编码
+
+使用步骤
+1、new//创建
+2、open//设置get还是post方式
+3、onreadystatechang//设置回调函数(函数里检查readyState属性)
+4、send//发送

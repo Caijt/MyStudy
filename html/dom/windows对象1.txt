@@ -1,0 +1,32 @@
+confirm()
+
+navigate("");
+导航到
+
+setInterval("alert('你好')",500)/区分大小写
+定时器
+clearInterval
+解除定时器
+
+settimeout("alert('时间到')",500)
+
+cleartimeout
+
+showModalDialog()弹出模式窗口
+showModelessDialog() 弹出非模式窗口
+
+windows.close()  关闭窗口
+
+事件
+onclick单击
+onload=""加载时触发
+
+onunload=""网页关闭后触发 
+onbeforeunload ="windows.event.returnValue='确定关闭'"在网页准备关闭时触发
+ondbclick双击
+onkeydown
+onkeypress
+onkeyup
+onmouseout鼠标离开元素范围
+onmouserover鼠标移动到元素范围
+onmouseup

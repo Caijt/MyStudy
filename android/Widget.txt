@@ -1,0 +1,48 @@
+清单文件
+<receiver android:name=".TimeWidgetProvider">
+<intent-filter>
+	<action name="android.appwidget.action.APPWIDGET_UPDATE"/>
+	<meta-data android:name="android.appwidget.provider"
+		   android:resource="@xml/appwidget_info"
+	 />
+</intent-filter>
+
+在res下新建xml文件夹
+新建一个appwidget_info.xml文件
+<appwidget-provider 
+	xmlns="http://schemas.android.com/apk/res/android"
+	android:minWidth=""
+	android:minHeight=""
+	android:updatePeriodMillis="0" 
+	//android:previewImage="@drawable/"
+	android:initialLayout="@layout/"
+	android:configure=""
+	//android:resizeMode="" 
+/>
+
+
+
+必须继承AppWidgetProvider
+public class TimeWidgetProvider extends AppWidgetProvider{
+	public void onEnabled(Context context){
+		//第一次添加时才调用
+	}
+	public void onDisabled(Context context){
+		//最后一次删除时才调用
+	}
+}
+
+Timer timer=new Timer();
+timer.schedule(,0,1000);
+启动服务来更新时间
+private final class TimeUpdateTask extends TimerTask{
+	public void run(){	
+		RemoteViews remoteView=new RemoteViews(getPackageName(),R.layout.);
+		remoteView.setTextViewText(R.id.textView,"123");//设置文本框上的文本
+PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(),100,new Intent(Intent.ACTION_CALL,Uri.parse("tel:110")),0);		
+remoteView.setOnClickPendingIntent(R.id.textView,pendingIntent);//设置文本框的单击事件
+		
+		AppWidgetManager appWidgetManager=AppWidgetManager.getInstance(getApplicationContext());
+		appWidgetManager.updateAppWidget(new ComponentName(getApplicationContext(),TimeWidget.class),remoteView);
+	}
+}

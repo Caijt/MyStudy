@@ -1,0 +1,22 @@
+在内容提供者
+操作里增加
+this.getContext().getContentResolver().notifyChange(uri,null);
+
+
+在监控者应用里增加
+this.getContextResolver().registerContentObserver(uri,true,new MyContentObserver(new Handler()));
+
+private class MyContentObserver extends ContentObserver{
+	public MyContentObserver(Handler handler){
+		super(handler);
+	}
+	@Override
+	public void onChange(boolean selfChange){
+		Uri uri=Uri.parse("content://");
+	 	Cursor cursor= getContentResolver().query(uri,null,null,null);
+		if(cursor.moveToFirst()){
+			String name= cursor.getString(cursor.getColumnIndex("name"));
+			Log.i("golden-glass",name);
+		}
+	}
+}

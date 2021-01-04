@@ -1,0 +1,14 @@
+String postData="<xml>....</xml>";
+
+HttpURLConnection conn=(HttpURLConnection)new URL("http://").openConnection();
+conn.setConnectTimeout(50000);
+conn.setRequestMethod("POST");
+
+conn.setRequestProperty("Content-Type","text/xml;charset=UTF-8");
+conn.setRequestProperty("Content-Length",postData.getBytes().length);
+conn.setDoOutput(true);//允许对外输出数据
+OutputStream stream= conn.getOutputStream();
+stream.write(data.getBytes());
+if(conn.getResponseCode==200){
+//请求成功
+}

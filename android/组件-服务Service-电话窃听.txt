@@ -1,0 +1,56 @@
+清单文件
+<service android:name=".PhoneService"/>
+
+public class PhoneService extends Service{
+	public IBinder onBind(Intent intent){
+	
+	}
+	public void onCreate(){
+	super.onCreate();
+	//取得电话管理服务
+	TelephonyManager telephonyManager =(TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
+	telephonyManager.listen(new PhoneListener(),PhoneStateListener.LISTEN_CALL_STATE);
+	}
+private final class PhoneListener extends PhoneStateListener{
+	private String incomingNumber;
+	private File file;
+	private MediaRecorder mediaRecorder;
+	public void onCallStateChanged(int state,String incomingNumber){
+		try{
+			switch(state){
+			case TelephonyManager.CALL_STATE_RINGING://来电
+			this.incomingNumber=incomingNumber;
+			break;
+			case TelephonyManager.CALL_STATE_OFFHOOK://接通电话
+			file=new File(Environment.getExtrernalStorageDirectory(),incomingNumber+System.currentTimeMills()+".3gp");
+			mediaRecorder=new MediaRecorder();
+			mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+			mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+			mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+			mediaRecorder.setOutputFile(file.getAbsolutePath());
+			mediaRecorder.prepare();
+			mediaRecorder.start();
+			break;
+			case TelephonyManager.CALL_STATE_IDLE://挂断电话
+			if(mediaRecorder!=null){
+				mediaRecorder.stop();
+				mediaRecorder.release();
+				mediaRecorder=null;
+			}
+			}
+		}catch(Exception e){
+			e.printSackTrace();
+		}
+	}
+}
+}
+
+可以在广播接收者启动服务
+Intent intent=new Intent(context,PhoneService.class);
+context.startService(intent); 
+//获得电话状态权限
+<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+//内存卡写入权限
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+//录音权限
+<uses-permission android:name="android.permission.RECORD_AUDIO"/>

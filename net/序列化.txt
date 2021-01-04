@@ -1,0 +1,21 @@
+序列化
+
+BinaryFormatter bf=new BinaryFormatter();
+bf.Serialize(stream,object);//将对象保存为二进制文件
+
+
+bf.Deserialize(stream);//将二进制文件读为对象
+
+[Serializable]//标识一个对象可被序列化
+class Person
+{
+}
+
+可以用IO流实现深层拷贝
+using(MemoryStream stream=new MemoryStream())
+{
+	bf.Serialize(stream,obj);
+	stream.Position=0;
+	object obj=bf.Deserialize(stream);
+}
+

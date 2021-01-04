@@ -1,0 +1,6 @@
+这个标注会在面板的属性里显示
+
+[DisplayName("名称")] //给属性标注名称
+
+
+object[] attributes= prop.GetCustomAttributes(typeof(),true)//取得该属性所有的标注

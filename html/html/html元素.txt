@@ -1,0 +1,80 @@
+
+<map>为图片创建映射
+例子
+<img src="" usemap=""/>
+
+<map name="" id="">
+<area shape="circle" coords="" href="" alt/>
+</map>
+
+<dl>
+<dt>标题</dt>
+<dd>描述</dd>
+</dl>
+
+框架
+<frameset cols="30%,8">//不能在body内
+<frame src="" frameborder="1"边框 noresize="noresize"无法调整大小 name="" scrolling="auto"滚动条/>
+<frame src=""/>
+<noframes>
+<body>不支持frame时出现的文字</body>
+</noframes>
+</frameset>
+<iframe src="">不支持iframe时出现的文字</iframe>//可以嵌在body内
+
+容器
+<fieldset>
+<legend>标题</legend>
+</fieldset>
+
+把select选项组合在一起
+optgroup
+<select>
+  <optgroup label="Swedish Cars">
+    <option value="volvo">Volvo</option>
+    <option value="saab">Saab</option>
+  </optgroup>
+  <optgroup label="German Cars">
+    <option value="mercedes">Mercedes</option>
+    <option value="audi">Audi</option>
+  </optgroup>
+</select>
+
+<pre>
+预格式文本
+</pre>
+
+
+<thead>表格头<tbody>表格体<tfoot>表格尾
+<table border="1">
+  <thead>
+    <tr>
+      <th>Month</th>
+      <th>Savings</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>January</td>
+      <td>$100</td>
+    </tr>
+    <tr>
+      <td>February</td>
+      <td>$80</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>Sum</td>
+      <td>$180</td>
+    </tr>
+  </tfoot>
+</table>
+
+
+下标
+<sub>
+
+上标
+<sup>
+

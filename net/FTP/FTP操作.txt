@@ -1,0 +1,14 @@
+命名空间
+using System.Net;
+
+WebClient类
+WebClient wc = new WebClient();
+wc.Credentials = new NetworkCredential("gdjinnanfang", "e8f2v8");//FTP主机帐号密码
+wc.UploadFile("ftp://gdjinnanfang:e8f2v8@gdjinnanfang.com/12345.xls", "d:/123.txt");//上传文件
+wc.DownloadFile("ftp://gdjinnanfang.com/123.xls", "d:/123.txt");//下载文件
+
+
+FtpClient类
+FtpClient ftp = new FtpClient("gdjinnanfang.com", "gdjinnanfang", "e8f2v8");
+ftp.Upload(new System.IO.FileInfo(@"d:\dd.txt"), "1111.txt");//上传文件
+ftp.Download("123.xls",@"d:\dd.txt");//下载文件

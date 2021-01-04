@@ -1,0 +1,68 @@
+ObjectDataSource 
+
+Repeater
+
+
+//循环模板
+
+<ItemTemplate>
+<%#Eval("属性")%>
+</ItemTemplate>
+
+<HeaderTemplate></HeaderTemplate>//头模板
+
+<FooterTemplate</FooterTemplate>//脚模板
+
+<AlternatingItemTemplate></AlternatingItemTemplate>//隔行模板
+
+<SeparatorTemplate></SeparatorTemplate>//数据间的分隔符 
+
+事件
+ItemDataBound 
+e.Item.DataItem //获得对象
+e.Item.FindControl 
+
+ItemCommand事件
+CommandName	
+CommandArgument
+重要
+
+验证控件
+requiredFieldValidator非空
+必须要设置的属性 ControlToValidate
+errorMessage 为空时显示的文本
+page.IsValid 页面上所有验证控件是否通过 此属性默认是在PAGE_LOAD事件后才能访问
+每个验证控件都有个IsValid属性
+page.Validate()强制执行验证事件
+InitialValue 初始值
+
+CompareValidator 比较验证控件
+
+RangeValidator 范围验证控件
+
+RegularExpressionValidator 正则验证
+
+CustomValidator 自定义验证
+
+ValidationSummary 验证汇总
+
+导航控件
+
+SiteMapPath 
+
+TreeView
+数据源 XML 
+站点地图
+
+Menu
+
+数据绑定控件
+GridView
+
+手写绑定数据
+集合赋给DataSource属性
+再执行控件的DataBind()
+
+GridView.Rows[].Celss[].text 获得单元格数据
+GridView.Rows[].Celss[].Controls[0] 获得编辑状态里的控件
+

@@ -1,0 +1,119 @@
+方法
+.write()在body写内容可以写内容也可以写标签
+ps 按钮里使用.write会使原来的内容清空
+
+getElementById() 从ID获取元素
+
+getElementsByName() 从name属性获取元素对象集合
+
+getElementsByTagName() 从标签获取元素对象集合
+
+动态设置事件 
+document.ondbclick=f1;//f1为方法名称
+
+动态创建元素三种方法
+document.write()
+document.createElement()
+innerHTML
+
+btn= document.createElement("input")//在内存增加一个input对象
+btn.type="button";
+btn.value="";
+也可以这样
+document.createElement("<input type='button' value='123'/>"
+
+var d=document.getElementById();
+d.appendChild(btn);//在页面创建元素
+
+removeChild(对象)//删除元素
+
+document.createTextNode()
+
+标签值
+value
+只能设置表单元素的值
+
+innerText
+纯文本
+innerHTML
+包括标签
+
+
+//IE6 IE7使用
+表格插入
+.insertRow()
+
+.inserCell()
+
+.insertRow(-1)
+
+.inserCell(-1)
+
+事件冒泡
+最里面的标签事件最先响应
+
+this 跟event.srcElement区别
+this不能用于调用的函数里
+
+修改标签的CSS样式
+1、用className
+2、用this.style.属性名
+用JS修改class属性用className属性
+
+不能用this.style=""。用style.属性名修改
+
+JS跟CSS属性不同的是那些有-的属性
+
+
+用JS修改元素大小
+parserInt(width)把宽度转换为数字
+
+设置对象属性（用于属性名为JS的关键字）
+对象.setAttribute("属性","值")
+对象.getAttribute("属性")
+
+标签里可以自定义一些属性。然后用getAttribute取出来
+用JS设置自定义属性的方法
+.setAttribute("自定义属性","值")
+.自定义属性="值"
+
+时间
+var now= new Date()
+var hour=now.getHours()
+var minite=now.getMinites()
+
+form表单里的onsubmit事件
+form.submit()这个事件不用通过form里的onsubmit
+
+window.open()
+
+对话框窗口
+window.showModalDialog("网页URL","值")的传值
+window.dialogArguments获得传来的值
+
+设置对话框大小
+var f="dialogWidth:200px;dialogHeight:300px";
+window.showModalDialog("网页","值",f);
+
+子窗口设置window.parent.returnValue的值
+父窗口可通过showModalDialog读取返回值
+
+正则表达式
+RegExp 正则对象
+var regex=new RegExp("\\d{11}");
+或者
+var regex=/\d{11}/;
+regex.test();
+正则表达式：\d{11} \d检查是否为数字 {11}11位数字
+.是任意字符 +一个或多个 *0或多个 ?0或一个 []特指某个字符
+.+表示任意字符出现一个或多个
+/,/g 匹配字符串里全部的,号
+
+regex.exec() 搜索匹配
+regex.compile 编译表达式，提高运行速度
+
+
+string.match(正则表达式)
+
+html js的压缩
+就是把里面的换行空格去掉，提高浏览速度

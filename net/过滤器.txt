@@ -1,0 +1,21 @@
+新建一个程序集，创建类库实现IHttpModule接口
+Init方法里 context.BeginRequest+=MyBeginRequest;
+void MyBeginRequest(object sender,EventArgs e)
+{
+	HttpApplication app=(HttpApplication)sender;
+	app.Context.Response.Write();
+}
+
+网站引用此程序集
+设置web.config
+system.web
+<httpModules>
+<add name="MyModule" type="过滤器类的全名,程序集名字" />
+</httpModules>
+
+
+url重写
+app.Context.Request.Path;//获得访问路径
+app.Context.RewritePath("重写路径");//重写url
+
+urlRewriter组件

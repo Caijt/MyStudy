@@ -1,0 +1,44 @@
+在res新建anim文件夹
+新建xml文件
+<set xmlns:android:http://schemas.android.com/apk/res/android"
+	android:shareInterpolator="false">
+<alpha //透明
+	android:fromAlpha="1"
+	android:toAlpha="0"
+	android:duration="5000"//持续时间5秒
+/>
+<translate //平移
+	android:fromXDelata="0"//从哪开始
+	android:fromYDelata="0"
+	android:toXDelata="100"//平移到哪里
+	android:toYDelata="100"
+	android:duration="5000"//持续时间5秒
+/>
+<scale //缩放
+	android:fromXScale="1"
+	android:fromYScale="1"
+ 	android:toXScale="5"//放大5倍
+	android:toXScale="5"
+	android:pivotX="50%" //设置缩放基点 50%是中心
+	android:pivotY="50%"
+	android:duration="5000"//持续时间5秒
+/>
+<rotate //旋转
+	android:fromDegrees="0" //开始角度
+	android:toDegrees="180" //结束角度
+	android:pivotX="50%" //设置缩放基点 50%是中心
+	android:pivotY="50%"
+	 
+</set>
+动画可以混合使用
+
+
+Animation animation=AnimationUtils.loadAnimation(this,R.anim.alpha);
+animation.setFillAfter(true);//设置动画后的图像位置是回到原位置还是保持动画后位置
+ImageView imageView=(ImageView)this.findViewById(R.id.imageView);
+
+imageView.startAnimation(animatio n);//开始动画
+
+编码方式实现
+Animation animation=new RotateAnimation(0,180,Animation.RELATIVE_TO_SELF,0.5f,Animation.RELATIVE_TO_SELF,0.5f);
+animation.setDruation(5000);

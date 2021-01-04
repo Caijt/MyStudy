@@ -1,0 +1,24 @@
+function http_get(){
+
+  $ch=curl_init();
+  curl_setopt($ch,CURLOPT_URL,"http://");
+  curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+  $res=curl_exec($ch);
+  curl_close($ch);
+  var_dump($res);
+
+}
+
+function https_get(){
+
+  $ch=curl_init();
+  curl_setopt($ch,CURLOPT_URL,"http://");
+  curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+
+  curl_setopt($ch,CURLOPT_SSL_VERIFYHOST,1);
+  curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,false);
+  $res=curl_exec($ch);
+  curl_close($ch);
+  var_dump($res);
+
+}

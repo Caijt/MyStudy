@@ -1,0 +1,19 @@
+没有对“C:\WINDOWS\Microsoft.NET\Framework\v2.0.50727\Temporary ASP.NET Files”的写访问权限
+在IIS中 发布程序一个ASP.NET程序，通过IE访问报如下错误：
+当前标识(NT AUTHORITY\NETWORK SERVICE)没有对“C:\WINDOWS\Microsoft.NET\Framework\v2.0.50727\Temporary ASP.NET Files”的写访问权限。
+说明: 执行当前 Web 请求期间，出现未处理的异常。请检查堆栈跟踪信息，以了解有关该错误以及代码中导致错误的出处的详细信息。
+
+异常详细信息: System.Web.HttpException: 当前标识(NT AUTHORITY\NETWORK SERVICE)没有对“C:\WINDOWS\Microsoft.NET\Framework\v2.0.50727\Temporary ASP.NET Files”的写访问权限。
+
+源错误:
+
+执行当前 Web 请求期间生成了未处理的异常。可以使用下面的异常堆栈跟踪信息确定有关异常原因和发生位置的信息。
+
+堆栈跟踪:
+。。。。。。
+
+=====================================
+
+翻阅了一些资料后发现是需要重新注册IIS服务扩展，在“开始”-“运行”里输入如入命令，回车，搞定
+
+C:\WINDOWS\Microsoft.NET\Framework\v2.0.50727\aspnet_regiis -i -enable

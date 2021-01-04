@@ -1,0 +1,22 @@
+XElement xe=new XElement("元素名称");
+XElement xe1=new XElement("子元素名称");
+XElement xe2=new XElement("子元素名称");
+xe1.Value="";//设置innertext
+xe1.SetAttributeValue("属性名",值);
+xe.Add(xe1);
+xe.Add(xe2);
+
+xe.ToString();
+
+
+XDocumnet xdoc=XDocument.Load(一个textstream的子类);
+xdoc.Root //根节点
+xdco.Descendants("元素名") 返回所有元素名为“元素名”的元素集合
+xdoc.Root.Nodes() 返回根节点下面所有的节点
+xdoc.Root.Elements() 返回根节点所有的一级元素
+xdoc.Root.Elements("元素名") 返回要节点下所有元素名的一级元素
+xdoc.Root.Attribute("属性名").Value;
+XNode xn= xdoc.Root.Nodes().ElementAt(0);//获取第一个子元素对象
+
+
+<>为一个节点；节点类型有注释<!--注释-->、元素<x></x> 

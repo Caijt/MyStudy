@@ -1,0 +1,10 @@
+css
+属性
+position
+absolute绝对位置
+fixed固定位置
+relative相对位置
+display 显示隐藏
+
+让无法输入中文
+ime-mode:disabled

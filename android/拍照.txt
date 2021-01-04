@@ -1,0 +1,37 @@
+android:screenOrientation=""
+设置窗口方向
+
+设置窗口为全屏
+requestWindowFeature(Window.FEATURE_NO_TITLE);//无标题
+getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+
+View layout=this.findViewById();//取得布局控件
+public boolean onTouchEvent(MotionEvent event){
+//重写触摸事件
+if(event.getAction()==MotionEvent.ACTION_DOWN){
+	layout.setVisibility(ViewGroup.VISIBLE);
+	return true; 
+}
+}
+
+//打开摄像头
+Camera camera= Camera.open();
+Camera.Parameters parameters=camera.getParameters();//取得摄像头参数
+parameters.flatten();//查看可设置的参数
+
+camera.setParameters(parameters);
+camera.setPreviewDisplay();//设置预览到哪个控件
+camera.startPreview();//开始预览
+
+camera.takePicture(null,null,回调函数);//拍照，回调函数里处理完照片数据后再调用startPreview()
+
+camera.autoFocus(null);//自动对焦
+//关闭摄像头
+camera.release();
+
+
+
+权限
+<uses-permission android:name="android.permission.CAMERA"/>
+

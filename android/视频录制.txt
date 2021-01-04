@@ -1,0 +1,28 @@
+
+//录制视频
+MediaRecorder mr=new MediaRecorder();
+mr.setAudioSource(MediaRecorder.AudioSource.MIC);
+mr.setVideoSource(MediaRecorder.VideoSource.CAMERA);
+mr.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+mr.setVideoSize(320,240);
+mr.setVideoFrameRate(5);
+mr.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+mr.setVideoEncoder(MediaRecorder.VideoEncoder.H264);
+
+File videoFile=new File(Environment.getExternalStorageDirectory(),System,currentTimeMills()+".3gp");
+mr.setOutputFile(videoFile.getAbsolutePath);
+
+mr.setPreviewDisplay(surfaceView.getHolder().getSurface());
+mr.prepare();
+mr.start();
+
+
+//停止录制
+mr.stop();
+mr.release();
+
+所需权限
+android.permission.RECORD_AUDIO
+android.permission.CAMERA
+android.permission.MOUNT_UNMOUNT_FILESYSTEMS
+android.permission.WRITE_EXTERNAL_STORAGE

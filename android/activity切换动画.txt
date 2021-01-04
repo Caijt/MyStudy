@@ -1,0 +1,29 @@
+startActivity();
+this.overridePendingTransition(R.anim.enter,R.anim.exit);
+
+
+<ViewFlipper
+	android:layout_width=""
+	android:layout_height=""
+	android:id="@+id/viewFliper"
+>
+
+重写onTouchEvent事件
+public boolean onTouchEvent(MotionEvent event){
+	if(event.getAction()==MotionEvent.ACTION_DOWN){
+		//按下事件
+		
+	}
+	else if(event.getAction()==MotionEvent.ACTION_UP){
+		//手指抬起
+		viewFlipper.showNext();//第二页
+		Animation in= AnimationUtils.loadAnimation(this,R.anim.enter);
+		Animation out= AnimationUtils.loadAnimation(this,R.anim.out);
+		viewFlipper.setInanimation(in);//设置页面进来的动画
+		viewFlipper.setOutAnimation(out);//设置页面出来的动画
+	}
+	return super.onTouchEvent(event);
+
+}
+
+100%p得到父元素的

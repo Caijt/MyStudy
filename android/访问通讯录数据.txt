@@ -1,0 +1,77 @@
+//读取联系人
+Uri uri=Uri.parse("content://com.android.contacts/contacts");
+ContentResolver resolver=getContext().getContentResolver();
+Cursor cursor=resolver.query(uri,new String[]{"_id"},null,null,null);
+while(cursor.moveToNext()){
+	int contactId=cursor.getInt(0);
+	Uri uri2=Uri.parse("content://com.android.contacts/contacts/"+contactId+"/data");
+	Cursor dataCursor= resolver.query(uri2,new String[]{"mimetype","data1","data2"},null,null,null);
+	while(dataCursor.moveToNext()){
+		String data1=dataCursor.getString(dataCursor.getColumnIndex("data1"));	
+		String data2=dataCursor.getString(dataCursor.getColumnIndex("data2"));	
+		String type=dataCursor.getString(dataCursor.getColumnIndex("mimetype"));
+		if(type.equals("vnd.android.cursor.item/name")){
+			//姓名
+		}else if(type.equals("vnd.android.cursor.item/email_v2")){
+			//邮箱
+		}else if(type.equals("vnd.android.cursor.item/phone_v2")){
+			//电话
+		}
+	}
+}
+
+
+读取权限
+<uses-permission android:name="android.permission.READ_CONTACTS"/>
+
+//根据号码查询联系人
+Uri uri=Uri.parse("content://com.android.contacts/data/phones/filter/"+number);
+ContentResolver resolver=getContext().getContentResolver();
+Cursor cursor=resolver.query(uri,new String[]{"display_name"},null,null,null);
+if(cursor.moveToFirst()){
+	String name=cursor.getInt(0);
+	Log.i("golden-glass",name);
+}
+
+//新增联系人
+Uri uri=Uri.parse("content://com.android.contacts/raw_contacts);
+ContentResolver resolver=getContext().getContentResolver();
+ContentValues values=new ContentValues();
+long contactId= ContentUris.parseId(resolver.insert(uri,values));//取得新增ID
+
+//增加姓名
+uri=Uri.parse("content://com.android.contacts/data);
+values.put("raw_contact_id",contactId);
+values.put("mimetype","vnd.android.cursor.item/name");//代表增加姓名类型
+values.put("data2","蔡锦钿");
+resolver.insert(uri,values);
+
+//增加电话
+values.clear();
+uri=Uri.parse("content://com.android.contacts/data);
+values.put("raw_contact_id",contactId);
+values.put("mimetype","vnd.android.cursor.item/phone_v2");//代表增加电话类型
+values.put("data2","2");
+values.put("data1","15019714040");
+resolver.insert(uri,values);
+
+
+操作权限
+<uses-permission android:name="android.permission.WRITE_CONTACTS"/>
+
+
+事务新增联系人
+Uri uri=Uri.parse("content://com.android.contacts/raw_contacts");
+ContentResolver resolver=getContext().getContentResolver();
+ArrayList<ContentProviderOperation> operations=new ArrayList<ContentProviderOperation>();
+ContentProviderOperation c1=ContentProviderOperation.newInsert(uri).withValue("account_name",null).build();
+operations.add(c1);
+
+uri=Uri.parse("content://com.android.contacts/data");
+ContentProviderOperation c2=ContentProviderOperation.newInsert(uri).withValueBackReference("raw_contact_id",0).withValue("mimetype","vnd.android.cursor.item/name").withValue("data2","蔡锦钿").build();
+operations.add(c2);
+
+ContentProviderOperation c3=ContentProviderOperation.newInsert(uri).withValueBackReference("raw_contact_id",0).withValue("mimetype","vnd.android.cursor.item/phone_v2").withValue("data1","15019714040").withValue("data2","2").build();
+operations.add(c3);
+
+resolver.applyBatch("com.android.contacts",operations);

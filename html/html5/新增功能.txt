@@ -1,0 +1,8 @@
+<canvas> //画布标签，一定程度上可以替代flash功能
+<header> <footer> //增强seo功能
+<video>//视频标签，只支持ogg和mp4格式
+<audio>//音频标签
+离线存储功能
+语音识别 http://www.html5china.com/course/20120530_3747.html
+图像识别 http://www.html5china.com/course/20120530_3742.html
+游戏     http://www.html5china.com/game

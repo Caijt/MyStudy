@@ -1,0 +1,37 @@
+在assets里新建一个html网页
+
+在布局xml里
+<WebView
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:id="@+id/webView"
+/>
+
+
+WebView webView= this.findViewById(R.id.webView);
+webView.loadUrl("file:///android_assets/index.html");
+webView.addJavascriptInterface(new JSObject,"customJS");
+webView.getSettings().setJavaScriptEnabled(true);//允许执行JS代码
+String data="[{name:'a'},{name:'b'}]";
+webView.loadUrl("javascript:show("+data+")");//调用网页里的JS代码
+
+
+privat final class JSObject{
+	public void test(){
+	}
+}
+
+//面向对象生成json
+JSONArray jsonArray=new JSONArray();
+JSONObject jsonObject=new JSONObject();
+jsonObject.put("name","a");
+jsonArray.put(jsonObject);
+jsonArray.toString();
+
+//网页里的JS代码
+function show(data){
+	var data=$.parseJSON(data);
+	//处理数据
+}
+//调用android的API
+javascript:customJS.test()

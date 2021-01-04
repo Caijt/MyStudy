@@ -1,0 +1,15 @@
+﻿php运行出现Call to undefinedfunction curl_init()
+
+
+
+64位win7/8 下PHP不支持CURL
+除了将PHP.ini中的;extension=php_curl.dll前面的";"去掉，还需要如下操作，
+（因apache,php版本的原因有些人电脑可能要执行第一步）
+
+
+1、将php目录下的这四个文件复制一份，移动到c盘windows\system32目录下libssh2.dll,php_curl.dll,ssleay32.dll,libeay32.dll
+
+
+2、将php目录下的这个文件移动到apache的bin目录下libssh2.dll
+
+3.重启Apache

@@ -1,0 +1,35 @@
+将数据作为XML数据发送,例如:
+public void PostXml(string url, string xml)
+{
+   byte[] bytes = Encoding.UTF8.GetBytes(xml);
+   HttpWebRequest request = (HttpWebRequest) WebRequest.Create(url);
+   request.Method = "POST";
+   request.ContentLength = bytes.Length;
+   request.ContentType = "text/xml";
+   using (Stream requestStream = request.GetRequestStream()) {
+     requestStream.Write(bytes, 0, bytes.Length);
+   }
+
+   HttpWebResponse response = (HttpWebResponse) request.GetResponse();
+   if (response.StatusCode != HttpStatusCode.OK) {
+     string message = String.Format("POST failed. Received HTTP {0}",
+     response.StatusCode);
+     throw new ApplicationException(message);
+   }
+}
+
+ 
+
+接收端通过Request.InputStream读取:
+byte[] byts = new byte[Request.InputStream.Length];
+Request.InputStream.Read(byts,0,byts.Length);
+string req = System.Text.Encoding.Default.GetString(byts);
+req = Server.UrlDecode(req);
+
+ 
+
+对于完整的XML数据,可以:
+xmlDoc = new XmlDocument();
+xmlDoc.load(Request.InputStream);
+ 
+

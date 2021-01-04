@@ -1,0 +1,24 @@
+if(($file_err=$_FILES['file']['error'])>0){
+	$err_msg='';
+	switch ($file_err) {
+		case 1:
+			$err_msg='上传文件大小超过服务器允许上传的最大值';
+			break;
+		case 2:
+			$err_msg='上传文件大小超过HTML表单中隐藏域MAX_FILE_SIZE选项指定的值';
+			break;
+		case 3:
+			$err_msg='文件只有部分被上传';
+			break;
+		case 6:
+			$err_msg='没有找不到临时文件夹';
+			break;
+		case 7:
+			$err_msg='文件写入失败';
+			break;
+		case 8:
+			$err_msg='php文件上传扩展没有打开';
+			break;
+	}
+	throw new \Exception($err_msg);
+}

@@ -1,0 +1,137 @@
+<%@ WebHandler Language="C#" Class="code39" %>
+
+using System;
+using System.Web;
+using System.Drawing;
+using System.IO;
+
+public class code39 : IHttpHandler
+{
+    public void ProcessRequest(HttpContext context)
+    {
+        string sCode = string.Empty;
+        //清除该页输出缓存，设置该页无缓存   
+        context.Response.Buffer = true;
+        context.Response.ExpiresAbsolute = System.DateTime.Now.AddMilliseconds(0);
+        context.Response.Expires = 0;
+        context.Response.CacheControl = "no-cache";
+        context.Response.AppendHeader("Pragma", "No-Cache");
+        //将Code39条形码写入内存流，并将其以 "image/Png" 格式输出   
+        MemoryStream oStream = new MemoryStream();
+        try
+        {
+            Bitmap oBmp = GetCode39(context.Request.QueryString["id"]);
+            oBmp.Save(oStream, System.Drawing.Imaging.ImageFormat.Png);
+            oBmp.Dispose();
+            context.Response.ClearContent();
+            context.Response.ContentType = "image/Png";
+            context.Response.BinaryWrite(oStream.ToArray());
+        }
+        finally
+        {
+            //释放资源   
+            oStream.Dispose();
+        }
+    }
+
+    public bool IsReusable
+    {
+        get
+        {
+            return false;
+        }
+    }
+
+    private Bitmap GetCode39(string strSource)
+    {
+        int x = 5; //左边界
+        int y = 0; //上边界
+        int WidLength = 2; //粗BarCode长度
+        int NarrowLength = 1; //细BarCode长度 www.it165.net
+        int BarCodeHeight = 24; //BarCode高度
+        int intSourceLength = strSource.Length;
+        string strEncode = "010010100"; //编码字符串 初值为 起始符号 *
+
+        string AlphaBet = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ-. $/+%*"; //Code39的字母
+
+        string[] Code39 = //Code39的各字母对应码
+        {
+             /**//* 0 */ "000110100",  
+             /**//* 1 */ "100100001",  
+             /**//* 2 */ "001100001",  
+             /**//* 3 */ "101100000",
+             /**//* 4 */ "000110001",  
+             /**//* 5 */ "100110000",  
+             /**//* 6 */ "001110000",  
+             /**//* 7 */ "000100101",
+             /**//* 8 */ "100100100",  
+             /**//* 9 */ "001100100",  
+             /**//* A */ "100001001",  
+             /**//* B */ "001001001",
+             /**//* C */ "101001000",  
+             /**//* D */ "000011001",  
+             /**//* E */ "100011000",  
+             /**//* F */ "001011000",
+             /**//* G */ "000001101",  
+             /**//* H */ "100001100",  
+             /**//* I */ "001001100",  
+             /**//* J */ "000011100",
+             /**//* K */ "100000011",  
+             /**//* L */ "001000011",  
+             /**//* M */ "101000010",  
+             /**//* N */ "000010011",
+             /**//* O */ "100010010",  
+             /**//* P */ "001010010",  
+             /**//* Q */ "000000111",  
+             /**//* R */ "100000110",
+             /**//* S */ "001000110",  
+             /**//* T */ "000010110",  
+             /**//* U */ "110000001",  
+             /**//* V */ "011000001",
+             /**//* W */ "111000000",  
+             /**//* X */ "010010001",  
+             /**//* Y */ "110010000",  
+             /**//* Z */ "011010000",
+             /**//* - */ "010000101",  
+             /**//* . */ "110000100",  
+             /**//*' '*/ "011000100",
+             /**//* $ */ "010101000",
+             /**//* / */ "010100010",  
+             /**//* + */ "010001010",  
+             /**//* % */ "000101010",  
+             /**//* * */ "010010100"  
+        };
+        
+        strSource = strSource.ToUpper();
+        //实作图片
+        Bitmap objBitmap = new Bitmap(((WidLength * 3 + NarrowLength * 7) * (intSourceLength + 2)) + (x * 2), BarCodeHeight + (y * 2));
+        Graphics objGraphics = Graphics.FromImage(objBitmap); //宣告<a href="http://www.it165.net/pro/" target="_blank" class="keylink">GDI</a>+绘图接口
+        //填上底色
+        objGraphics.FillRectangle(Brushes.White, 0, 0, objBitmap.Width, objBitmap.Height);
+
+        for (int i = 0; i < intSourceLength; i++)
+        {
+            //检查是否有非法字符
+            if (AlphaBet.IndexOf(strSource[i]) == -1 || strSource[i] == '*')
+            {
+                objGraphics.DrawString("含有非法字符", SystemFonts.DefaultFont, Brushes.Red, x, y);
+                return objBitmap;
+            }
+            //查表编码
+            strEncode = string.Format("{0}0{1}", strEncode, Code39[AlphaBet.IndexOf(strSource[i])]);
+        }
+
+        strEncode = string.Format("{0}0010010100", strEncode); //补上结束符号 *
+
+        int intEncodeLength = strEncode.Length; //编码后长度
+        int intBarWidth;
+
+        for (int i = 0; i < intEncodeLength; i++) //依码画出Code39 BarCode
+        {
+            intBarWidth = strEncode[i] == '1' ? WidLength : NarrowLength;
+            objGraphics.FillRectangle(i % 2 == 0 ? Brushes.Black : Brushes.White, x, y, intBarWidth, BarCodeHeight);
+            x += intBarWidth;
+        }
+        return objBitmap;
+    }
+}

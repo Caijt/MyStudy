@@ -1,0 +1,60 @@
+String path="http://";
+URL url=new URL(path);
+HttpURLConncection conn=(HttpURLConnection)url.openConncetion();
+conn.setConnectTimeout(5000);
+conn.setRequestMethod("GET");
+if(conn.getResponseCode==200){
+	int length= conn.getContentLength();//得到文件长度
+	File file=new File("文件名称");
+	RandomAccessFile ra=new RandomAccessFile(file,"rwd");
+	ra.setLength(length);
+	ra.close();
+	int block=length%4==0?length/4:length/4+1;//开启4个线程
+	for(int threadId=0;threadid<threadsize;threadId++){
+		new DownloadThread(threadId,block,url,file).start();//开启线程
+	}
+}
+
+
+private class DownloadThread extends {
+	private int threadId;
+	private int block;
+	private URL url;
+	private File file;
+	public DownThread(int threadId,int block,URL url,File file){
+		this.threadId=threadId;
+		this.block=block;
+		this.url=url;
+		this.file=file;
+	}
+	public void run(){
+		int start=threadId*block;
+		int end=(thread+1)*block-1;
+		try{	
+		RandomAccessFile accessFile=new RandomAccessFile(file,"rwd");
+		accessFile.seek(start);
+		HttpURLConnection conn= (HttpURLConnection)url.openConnection();
+		conn.setConnectTimeout(5000);
+		conn.setRequestMethod("GET");
+		conn.setRequestProperty("Range","bytes="+start+"-"+end);
+		if(conn.getResponseCode==206){
+			InputStream stream= conn.getInputStream();
+			byte[] buffer=new byte[1024];
+			int len=0;
+			while(len=stream.read(buffer)!=-1){
+				accessFile.write(buffer,0,len);
+			}
+			accessFile.close();
+			stream.close();
+		}
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		 
+		
+	}
+}
+
+
+

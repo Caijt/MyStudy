@@ -1,0 +1,50 @@
+<html>
+	<head>
+		<title>表单</title>
+	</head>
+	<body>
+		<form>
+		<fieldset>
+			<legend>表单</legend>
+			输入框<input type="text" maxlength="6" size="50"><br>
+			密码输入框<input type="password"><br>
+			隐藏框<input type="hidden"><br>
+			提交按钮<input type="submit"><br>
+			重置按钮<input type="reset"><br>
+			图片<input type="image" src="image.jpg"><br>
+			单选<input type="radio" value="man" name="sex" id="man"><label for="txtName">男</label><input type="radio" value="woman" name="sex">女<br>
+			复选框<input type="checkbox">复选<br>
+			选择框<select>
+			<option value="1">汕头</option>
+			<option value="2">广州</option>
+			<option value="3" selected>清远</option>
+			<option value="4">驼浦</option>
+			</select><br>
+			<select size="4" multiple >
+			<option value="1">汕头</option>
+			<option value="2">广州</option>
+			<option value="3" >清远</option>
+			<option value="4">驼浦</option>
+			</select>
+			<select size="4" multiple >
+			<optgroup label="广东">
+			<option value="1">汕头</option>
+			<option value="2">广州</option>
+			<option value="3" >清远</option>
+			<option value="4">驼浦</option>
+			</optgroup>
+			<optgroup label="广东">
+			<option value="1">汕头</option>
+			<option value="2">广州</option>
+			<option value="3" >清远</option>
+			<option value="4">驼浦</option>
+			</optgroup>
+			</select>
+
+			<label for="texts">文本域</label><textarea id="texts" cols="30"  rows="30">12</textarea>
+			<label for="txtName">label</label><input type="text" id="txtName">
+			</fieldset>
+			<marquee direction="up">飞</marquee>
+		</form>
+	</body>
+</html>

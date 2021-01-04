@@ -1,0 +1,32 @@
+Dialog dialog = new AlertDialog.Builder(this).setIcon(
+　　     android.R.drawable.btn_star).setTitle("喜好调查").setMessage(
+　　     "你喜欢李连杰的电影吗？").setPositiveButton("很喜欢",
+　　     new OnClickListener() {
+　　      @Override
+　　      public void onClick(DialogInterface dialog, int which) {
+　　       // TODO Auto-generated method stub
+　　       Toast.makeText(Main.this, "我很喜欢他的电影。",
+　　         Toast.LENGTH_LONG).show();
+　　      }
+　　     }).setNegativeButton("不喜欢", new OnClickListener() {
+　　    @Override
+　　    public void onClick(DialogInterface dialog, int which) {
+　　     // TODO Auto-generated method stub
+　　     Toast.makeText(Main.this, "我不喜欢他的电影。", Toast.LENGTH_LONG)
+　　       .show();
+　　    }
+　　   }).setNeutralButton("一般", new OnClickListener() {
+　　    @Override
+　　    public void onClick(DialogInterface dialog, int which) {
+　　     // TODO Auto-generated method stub
+　　     Toast.makeText(Main.this, "谈不上喜欢不喜欢。", Toast.LENGTH_LONG)
+　　       .show();
+　　    }
+　　   }).create();
+　　   dialog.show();
+
+
+new AlertDialog.Builder(this).setTitle("请输入").setIcon(
+　　     android.R.drawable.ic_dialog_info).setView(
+　　     new EditText(this)).setPositiveButton("确定", null)
+　　     .setNegativeButton("取消", null).show();

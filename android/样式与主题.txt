@@ -1,0 +1,31 @@
+样式
+
+style.xml
+<style name="textViewStyle">
+<item name="android:textSize">22sp</item>
+<item name="android:textColor">#FF0000</item>
+</style>
+<style name="childStyle" parent="textViewStyle">//继承父类
+<item name="android:textSize">22sp</item>
+<item name="android:textColor">#FF0000</item>
+</style>
+<style name="textViewStyle.chlidStyle">//继承父类
+<item name="android:textSize">22sp</item>
+<item name="android:textColor">#FF0000</item>
+</style>
+
+
+<TextView
+	style="@style/textViewStyle"
+/>
+
+
+主题
+<style name="MyTheme">
+<item name="">true</item>
+</style>
+
+如何使用
+清单文件里
+<application android:theme="@style/MyTheme">
+或<activity android:theme="">

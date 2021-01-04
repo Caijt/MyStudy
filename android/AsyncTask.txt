@@ -1,0 +1,18 @@
+public final class MyAsyncTask extends AsyncTask<String,Integer,Uri>{
+
+	protected void onPreExecute(){
+		//execute()执行后，首先调用
+	}	
+	protected Uri doInBackground(String... params){
+		//第二调用，运行在子线程的
+	}
+	protected void onPostExecute(Uri result){
+		//doInBackground运行完后返回的值，在主线程运行
+	}
+	protected void onProgressUpdate(Integet... values){
+		//只有在doInBackground里调用publishProgress()时调用
+	}
+	
+}
+
+new MyAsyncTask().execute();//

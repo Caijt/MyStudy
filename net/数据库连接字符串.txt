@@ -1,0 +1,21 @@
+ACCESS 2000
+Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\mydatabase.mdb;Persist Security Info=False;
+带密码的
+Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\mydatabase.mdb;Jet OLEDB:Database Password=MyDbPassword;
+ACCESS 2007
+Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\myFolder\myAccess2007file.accdb;Persist Security Info=False;
+带密码的
+Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\myFolder\myAccess2007file.accdb;Jet OLEDB:Database Password=MyDbPassword;
+
+
+mssql连接字符串
+
+用户
+Data Source=CAI\CAI;Initial Catalog=INFO;User ID=sa;Password=********
+
+本地
+Data Source=CAI\CAI;Initial Catalog=INFO;Integrated Security=True***
+
+
+mysql
+Data Source=localhost;Database=info;User ID=zjwdb_165453;Password=cai;character set=utf8;Allow User Variables=True

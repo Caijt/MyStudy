@@ -1,0 +1,150 @@
+$.jquery()
+简写=>$()
+
+$(document).ready(function(){
+	alert("hello")
+	});
+$(function(){
+	alert("hello"); 
+	});
+相当于 body load事件
+
+jquery选择器(获得元素)
+$("#控件ID").html("<font color='red'>hello</font>") //通过控件ID获得元素并设置它的innerHTML
+$("input").val("world"); //通过标签获得元素集合并设置value值
+$(".类样式名")//通过类样式名获得具有此类样式名的元素
+$("标签名,标签名")//通过多个标签名选择多个元素
+$("#控件ID 标签名")//控件ID元素下面的所有标签名的元素 
+$("#控件ID > 标签名")//控件ID元素一级下面的所有标签名的元素
+
+$().one() //一次性事件
+$().bind()//移除所有绑定事件
+$().offset()//获得元素左上角相对文档的坐标 left=>X坐标 top=>Y坐标
+$().hover(func1,func2)//元素获得焦点时执行func1,失去焦点时执行func2
+$().hide()//隐藏元素
+$().toggle()//切换元素的显示跟隐藏
+$.map(arr,func)//对数组每个数进行处理，返回新数组
+$.each(arr,func)//对字典
+$().live("click",func)//扫描元素事件，为新元素添加事件
+
+$().attr("属性名","值")//设置元素属性的值
+
+$("#控件ID").click(function(){
+	alert("hello");
+	});//设置click事件
+
+
+
+
+$(DOM对象)//将dom对象转换成jquery对象
+blur() 焦点离开事件
+
+
+//将jquery对象转换为dom对象
+var jqueryobj=$("#控件ID");
+var domobj=jqueryobj[0];
+
+
+//修改style属性
+
+$("#控件ID").css("属性名","值");
+
+
+//取值
+$("#控件ID").val();//加参数是设置，不加是取值
+$("#控件ID").css("属性名");//获取样式
+$("#控件ID").css("backgroundColor","inherit")//inherit是本来的颜色
+
+//链式编程
+
+$().val("hello").css("backgroundColor","red").css("borderColor","blue").animate({width:200});
+
+$().next() //下一个同级节点
+$().prev() //前一个同级节点
+$().nextAll()
+$().prevAll()
+$().siblings() //除自己其它的同级节点
+
+
+$("1","2") 相对于2下面的1元素
+
+jquery里面的注册事件都是+=
+
+
+//过滤器
+$("div:first") //第一个DIV
+$("div:last")  //最后一个div
+$("div.类名:first")
+$("div:not(.类名)")//选择样式名不是.类名的div元素
+$("div:even") //奇数元素
+$("div:odd") //偶数元素
+$("div:dq(3)")//DIV中序号为3的DIV元素
+$("div:gt(3)")//DIV中序号大于3的DIV元素
+$("div:lt(3)") //DIV中序号小于3的DIV元素
+
+//属性过滤器
+$("div[id]")//获取有ID属性的DIV元素
+$("div[name=test]")//获取属性name等于test的DIV元素
+$("div[name!=test]")//获取属性name不等于test的DIV元素
+
+//表单对象过滤
+$("#form1:enabled")//表单里所有启用的元素
+$("#form1:disabled")//表单里所有禁用的元素
+$("input:checked")//选取所有选中的元素
+$("select option:selected")//选取所有选中的select元素
+$(":input")//所有能输入的元素
+$(":text")//所有单行文本框
+$(":password")//
+
+//样式
+$("div").addClass("css类名")//追加css样式
+$("div").removeClass("css类名")//移除css样式
+$("div").hasClass("css类名")//是否含有
+$("div").toggleClass("css类名")//切换css样式
+
+
+//each
+
+$().each(function(key,value){})//对元素集合中每个元素进行单独的处理，key是索引,value是DOM对象
+更简单的写法
+$().each(function(){ alert($(this).text())})
+
+
+//动态创建DOM元素
+var link=$("<a herf="www.baidu.com">百度</a>");
+$("body").append(link);
+
+$("<a></a>").appendTo($("body"))//把创建的jquery增加到body中 
+
+* prepend() prependTo()//元素添加元素的所有子元素的最前面
+ after()//元素添加到元素之后（兄弟元素）
+before()//元素添加到元素之前（兄弟元素）
+
+//删除元素
+$().remove()//元素自杀
+
+//移动元素
+$().remove().appendTo($("body"))
+$().appendTo($("body"))
+
+//清空元素
+$().empty()//清空元素的innerHTML
+
+//元素替换
+$().replaceWith("<hr/>")//
+
+//元素包裹
+$().wrap("<font color='red'></font>")//
+
+//RadioButton操作
+$("input[name=]:checked").val()//取得单选组选中的值
+$("input[name=]").val(["女"])//设置单选组选中的值
+
+
+//事件参数e
+e.stopPropagation()//阻止事件冒泡
+e.preventDefault()//禁止链接，相当于window.event.returnValue=false
+e.pageX,e.pageY 
+e.target//引发事件的最原始元素
+e.which//获得鼠标的按键 1=左键 2=中键 3=右键
+e.keyCode e.charCode

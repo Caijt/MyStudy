@@ -1,0 +1,24 @@
+window.location.href 转到网页
+window.location.reload() 刷新
+window.nevigate()转到网页
+
+window.event.altKey
+
+.ctrlKey
+.shiftKey
+
+window.event.returnValue=false可以停止提交或停止转到超连接
+window.event.srcElement 获取触发事件的元素
+window.event.button 获取鼠标点击时的键
+
+window.screen.width 获取屏幕的宽度
+window.screen.height
+window.event.clientX鼠标在浏览器的X位置
+window.event.screenX鼠标在屏幕的X位置
+clipboardData.setData("text",)复制
+clipboardData.getData("text")粘贴
+
+window.history.back() 后退
+window.history.go(-1)
+
+window.history.forward()前进 

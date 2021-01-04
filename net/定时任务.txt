@@ -1,0 +1,7 @@
+Quartz.Net
+
+IScheduler  计划者
+IJob 工作
+Trgger 触发器
+CrondTrigger
+SimpleTrigger

@@ -1,0 +1,29 @@
+onCreate()
+
+onStart()   onRestart()
+
+onResume()
+
+onPause()
+
+onStop()
+
+onDestroy()
+
+不能删除事件里父类方法
+
+
+android:theme="@android:style/Theme.Dialog" //设置窗口的样式为对话框
+
+onSaveInstanceState()(Bundle b){
+//系统销毁应用时会调用
+super.onSaveInstanceState(b);
+}
+
+onRestoreInstanceState(Bundle b){
+//重新创建后恢复调用 
+super.onRestoreInstanceState(b);
+}
+
+屏幕切换或键盘显示隐藏时不销毁当前activity
+<activity android:configChanges="keyboardHidden|orientation">

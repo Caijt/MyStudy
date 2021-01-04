@@ -1,0 +1,29 @@
+业务代码
+
+public byte[] getImageByte(String u){
+URL url=new URL(u);
+HttpURLConnection conn= url.openConnection();
+conn.setConnectTimeout(5000);//设置超时时间
+conn.setRequestMethod("GET");
+if(conn.getResponseCode==200){
+
+	InputStream inStream= conn.getInputStream();
+	ByteArrayOutputStream outStream=new ByteArrayOutputStream();
+	byte[] buffer=new byte[1024];
+	int len=0;
+	while((len=inStream.read(buffer))!=-1){
+		outStream.write(buffer,0,len);
+	}
+	inStream.close();
+	return outStream.toByteArray();
+}
+}
+
+
+Byte[] data=getImageByte("http://golden-glass.com/g.jpg");
+Bitmap bm=BitmapFactory.decodeByteArray(data,0,data.length);
+ImageView imageView= (ImageView)this.findViewById(R.id.imageView);
+imageView.setImageBitmap(bm);
+
+访问网络权限
+<uses-permission android:name="android.permission.INTERNET"/>

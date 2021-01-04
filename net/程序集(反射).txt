@@ -1,0 +1,45 @@
+Assembly asm= Assembly.LoadFile("程序集路径");//动态加载程序集
+Type[]  types= asm.GetTypes();//获得程序集里所有的类数组
+foreach(Type type in types)
+{
+	PropertyInfo[] props= type.GetProperties();//获得类里所有的属性
+}
+
+//Type是对一个类的描述的类
+
+Type type;
+
+Assembly.GetTypes() 调用程序集里所有的类，包括
+Assembly.GetExportedTypes() 调用程序集里所有的public类
+
+Activator.CreateInstance(type)//动态创建一个Type所描述的对象
+
+Type t1=typeof(Person);
+
+Person p=new Person();
+Type t1=p.GetType();
+
+
+type.IsAssignableFrom(type2)//判断type所对应的类型变量是否可以从type2所对应的类型变量
+//判断type2所对应的类型是否是type的子类或实现了type所对应的接口
+
+object obj=new objec();
+type.IsInstanceOfType(obj)//判断obj是否是type所对应的类型(或其对应子类类型或实现了它接口)的实例
+
+type.IsSubclassOf(type2)//判断type所对应的类型是否是type2的子类，不包括接口
+
+
+//动态给对象属性赋值
+Type typePerson=typeof(Person);
+object obj=Activator.CreateInstance(typePerson);
+
+PropertyInfo propAge=typePerson.GetProperty("Age");
+
+proAge.SetValue(obj,30,null);//设置值
+proAge.GetValue(obj)//取值
+
+//动态调用对象方法
+MethodInfo methodSayHello=typePerson.GetMethod("SayHello");
+methodSayHello.Invoke(obj,null) 
+
+typePerson.GetMethod("SayHello",BindingFlags.NonPublic|BindingFlags.Instance);//取得非public方法

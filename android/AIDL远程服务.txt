@@ -1,0 +1,41 @@
+建立AIDL文件
+
+interface IStudent {
+	String query(int no);
+}
+
+
+//服务
+清单文件
+<service android:name=".StudentService">
+<intent-filter>
+<action android:name="cn.golden_glass.student.query"/>
+</intent-filter>
+</service>
+
+public class StudentService extends IStudent.IStb{
+
+	public IBinder onBind(Intent intent){
+		return new StudentBinder();
+	}
+	private class StudentBinder extends Binder implements IStudent{
+		public String query(int no){
+			return "123";
+		}
+	}
+	
+}
+
+
+private IStudent s;
+Intent intent =new Intent("cn.golden_glass.student.query");
+bindService(intent,new StudentServiceConnection(),BIND_AUTO_CREATE);
+
+private class StudentServiceConnection implements ServiceConncetion{
+	public void onServiceConnected(ComponentName, name,IBinder service){
+		 s=IStudent.IStb.asInterface(service);
+	}
+	public void onServiceDisconnected(ComponentName name){
+		s=null;
+	}
+}

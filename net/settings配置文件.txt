@@ -1,0 +1,5 @@
+Settings.settings文件设置
+using 命名空间.Properties;
+
+控件属性ApplicationSettings
+Settins.Default.Save();保存配置

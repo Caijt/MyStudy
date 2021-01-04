@@ -1,0 +1,109 @@
+Item.xml
+<LinearLayout 
+	android:orientation="horizontal"
+	android:layout_width="fill_parent"
+ 	android:layout_height="fill_parent">
+
+<TextView
+	
+	android:layout_width="100dp"
+ 	android:layout_height="wrap_content"
+	android:id="@+id/name"
+/>
+<TextView
+	
+	android:layout_width="fill_parent"
+ 	android:layout_height="wrap_content"
+	android:id="@+id/phone
+/>
+</LinearLayout>
+
+Mail.xml
+<LinearLayout
+	android:orientation="vertical"
+	android:layout_width="fill_parent"
+ 	android:layout_height="fill_parent"
+>
+<ListView
+	android:id="@+id/listView"
+	android:layout_width="fill_parent"
+ 	android:layout_height="fill_parent"
+/>
+</LinearLayout>
+
+
+
+java
+ListView listView= this.findViewById(R.id.listView);
+List<Person> persons=new List<Person>();
+List<HashMap<String,Object>> data=new ArrayList<HashMap<String,Object>>();
+for(Person p : persons){
+	HashMap<String,Object> item=new HashMap<String,Object>();
+	item.put("name",person.getName());
+	item.put("phone",person.getPhone());
+	data.add(item);
+}
+SimpleAdapter a=new SimpleAdapter(this,data,R.layout.item,new String[]{"name","phone"},new Id[]{R.Id.name,R.Id.phone});//搭建适配器
+listView.setAdapter(a);
+
+SimpleCursorAdapter a=new SimpleCursorAdapter(this.R.layout.item,Cursor,,new String[]{"name","phone"},new Id[]{R.Id.name,R.Id.phone});//必须有_id字段
+
+自定义适配器
+public class CustomAdapter extends BaseAdapter{
+	private int resource;//条目界面
+	private List<Person> persons;
+	private LayoutInflater inflater;
+	public CustomAdapter(Context context,List<Person> p,int resouce){
+		this.persons=p;	
+		this.resource=resource;
+		inflater=(LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+	}
+	public int getCount(){
+		return persons.size();
+	}
+	public Object getItem(int position){
+		return persons.get(position);
+	}
+	public long getItemId(int position){
+		return position;
+	}
+	public View getView(int position,View convertView,ViewGroup parent){
+		TextView nameView;
+		TextView phoneView;
+		if(convertView==null){
+			convertView= inflater.inflate(resurce,null);		
+			nameView= convertView.findViewById(R.id.name);
+			phoneView=convertView.findViewById(R.id.phone);
+			ViewCache v=new ViewCache();
+			v.nameView=nameView;
+			v.phoneView=phoneView;
+			convertView.setTag(v);
+		}else{
+			ViewCache v=(ViewCache)convertView.getTag();
+			nameView= v.nameView;
+			phoneView=v.phoneView;
+		}
+ 		Person p= persons.get(position);
+		nameView.setText(p.name);
+		phoneView.setText(p.phone);
+		return convertView;
+	}
+	private final class ViewCache(){
+		public TextView nameView;
+		public TestView phoneView;
+	}
+}
+
+CustomAdapter a=new CustomAdapter(this,persons,R.layout.item);
+listView.setAdapter(a);
+
+//条目监听事件
+listView.setOnItemClickListenter();
+private final class ItemClickListener implements OnItemClickListener{
+	public void onItemClick<AdapterView<?> parent,View view,int position,long id){
+		ListView lView=(ListView)parent;
+		Person p=(Person)lView.getItemAtPosition(position);
+		Toast.makeText(getApplicationContext(),person.getId().toString(),1).show();
+		
+	}
+}

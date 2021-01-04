@@ -1,0 +1,19 @@
+SurfaceView控件
+
+surfaceView.getHolder().setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);//设置不维持它自身的缓冲区 
+surfaceView.getHolder().setFixedSize(176,144);//设置分辨率
+surfaceView.getHolder().setKeepScreenOn(true);//设置自动不暗屏
+surfaceView.getHolder().addCallback();//设置监听事件 
+
+mediaPlayer.reset();
+mediaPlayer.setDataSource();
+mediaPlayer.setDisplay(surfaceView.getHolder());
+mediaPlayer.prepare();//缓冲
+mediaPlayer.setOnPreparedListener();
+
+
+private final class PrepareListener implements OnPreparedListener{
+	public void onPrepared(MediaPlay mp){
+		
+	}
+}

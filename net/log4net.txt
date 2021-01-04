@@ -1,0 +1,4 @@
+添加log4net.dll的引用
+
+Application_Start方法中添加
+log4net.Config.XmlConfigurator.Configure();

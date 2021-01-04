@@ -1,0 +1,40 @@
+备份
+mysqldump -h localhost -u root用户名 -p密码 数据库名 > e:\文件名
+
+e:\mysql\bin\mysqldump -h localhost -u root  info > e:\info_%date:~0,10%.bak
+
+show procedure status;//显示所有过程
+show function status //显示所有函数
+
+delimiter $$ // 定义结束符
+CREATE  PROCEDURE 过程名(IN inputId int)
+BEGIN
+	select *, @ff:=atparent from t_account_type where atId=inputId union select *,NULL from t_account_type where atId=@ff;
+ 
+END;
+创建过程例子
+delimiter $$
+create procedure GetAccountType(in inputId int) 
+BEGIN
+select *, @ff:=atparent from t_account_type where atId=inputId union select *,NULL from t_account_type where atId=@ff;
+ 
+END;
+$$
+
+
+创建函数例子
+delimiter $$
+create function GetChildAccountType(depId int)
+returns varchar(255)
+begin
+DECLARE tempId VARCHAR(255)DEFAULT '';
+DECLARE outId VARCHAR(255) DEFAULT '';
+
+set tempId=CAST(depId AS CHAR);
+WHILE tempId IS NOT NULL  DO
+set outId=CONCAT(outId,',',tempId);
+select GROUP_CONCAT(atId)into tempId from t_account_type where FIND_IN_SET(atParent,tempId);
+end WHILE;
+RETURN outId;
+END;
+$$

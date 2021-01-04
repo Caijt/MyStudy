@@ -1,0 +1,15 @@
+String postData="name=cai&age=11";
+
+HttpURLConnection conn=(HttpURLConnection)new URL("http://").openConnection();
+conn.setConnectTimeout(50000);
+conn.setRequestMethod("POST");
+
+conn.setRequestProperty("Content-Type","application/soap+xml;charset=utf-8");
+conn.setRequestProperty("Content-Length",postData.length);
+conn.setDoOutput(true);//允许对外输出数据
+OutputStream stream= conn.getOutputStream();
+stream.write(data.getBytes());
+if(conn.getResponseCode==200){
+//请求成功
+conn.getInputStrem();//取得返回流
+}

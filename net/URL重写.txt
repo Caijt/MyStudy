@@ -1,0 +1,6 @@
+全局文件里
+Application_BeginRequest()//每个请求都会触发
+
+HttpContext.Current.RewritePath();//重写
+
+HttpContext.Current.Request.AppRelativeCurrentExecutionFilePath//获得用户访问的资源

@@ -1,0 +1,4 @@
+$.cookie("存入名称",$().val())//将$().val()以“存入名称”存入cookie
+$.cookie("存入名称")//将cookie中“存入名称”的值取出来
+
+$.cookie("","",{expires:7,})//expires是cookie保存期限

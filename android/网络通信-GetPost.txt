@@ -1,0 +1,34 @@
+
+//用GET方式需对中文参数进行编码
+URLEncoder.encode(待编码的字符串,编码类型);
+
+
+
+String postData="name=cai&age=11";
+
+HttpURLConnection conn=(HttpURLConnection)new URL("http://").openConnection();
+conn.setConnectTimeout(50000);
+conn.setRequestMethod("POST");
+
+conn.setRequestProperty("Content-Type","application/x-www.form-urlencoded");
+conn.setRequestProperty("Content-Length",postData.length);
+conn.setDoOutput(true);//允许对外输出数据
+OutputStream stream= conn.getOutputStream();
+stream.write(data.getBytes());
+if(conn.getResponseCode==200){
+//请求成功
+}
+
+//用httpClient
+List<NameValuePair> params=new ArrayList<NameValuePair>();
+params.add(new BasicNameValuePair("name","cai"));
+params.add(new BasicNameValuePair("age",26));
+UrlEncodedFormEntity entity=new UrlEncodedFormEntity(params,"UTF-8");
+HttpPost post=new HttpPost("http://");
+post.setEntity(entity);
+DefaultHttpClient client=new DefaultHttpClient();
+HttpResponse response= client.execute(post);
+if(response.getStatusLine().getStatusCode()==200){
+//请求成功
+}
+

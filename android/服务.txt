@@ -1,0 +1,36 @@
+
+//服务
+清单文件
+<service android:name=".StudentService"/>
+
+public class StudentService extends Service{
+
+	public IBinder onBind(Intent intent){
+		return new StudentBinder();
+	}
+	private class StudentBinder extends Binder implements IStudent{
+		public String query(int no){
+			return "123";
+		}
+	}
+	
+}
+
+public interface IStudent {
+	public String query(int no);
+}
+
+
+
+private IStudent s;
+Intent intent =new Intent(this,StudentService.class);
+bindService(intent,new StudentServiceConnection(),BIND_AUTO_CREATE);
+
+private class StudentServiceConnection implements ServiceConncetion{
+	public void onServiceConnected(ComponentName, name,IBinder service){
+		 s=(IStudent service)
+	}
+	public void onServiceDisconnected(ComponentName name){
+		s=null;
+	}
+}

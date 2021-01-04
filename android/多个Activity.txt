@@ -1,0 +1,53 @@
+
+public class OtherActivity extens Activity{
+	protected void onCreate(Bundle savedInstancesState){
+		super.onCreate(savedInstancesState);
+		setContentView(R.layout.otherActivity);
+		Intent intent=getIntent();//取得激活这个窗口的意图对象
+		String company=intent.getStringExtra("company");//取得参数
+		//Bundle bundle=intent.getExtras();
+		//String company= bundle.getString("company");
+		
+	}
+	public void closeActivity(){
+		Intent data=new Intent();
+		data.putExtra("result","");
+		setResult(2,data);
+		this.finish();
+	}
+
+}
+
+//清单文件
+<activity
+	android:name=".OtherActivity" 
+	android:label="@string/otherActivityTitle"
+
+/>
+
+//在layout下新建一个otherActivity
+
+
+//打开新窗口
+Intent intent=new Intent();
+//new Intent(this.OtherActivity.class); 
+intent.setClass(this,OtherActivity.class);
+//intent.setClassName(this,"cn.golden_glass.");
+//intent.setClassName("包名","类全称");用于跨应用
+//intent.setComponent(new ComponentName(this,OtherActivity.class));
+//传参数
+intent.putExtra("company","金刚玻璃");
+intent.putExtra("name","蔡锦钿");
+
+//存参数的另一种方法
+//Bundle bundle=new Bundle();
+//bundle.putString("company","金刚玻璃");
+//intent.putExtras(bundle);
+
+startActivity(intent);
+startActivityForResult(intent,请求码);//激活窗口并返回结果
+
+//重写主窗口方法
+protected void onActivityResult(int requestCode,int resultCode,Intent data){
+	
+}

@@ -1,0 +1,5 @@
+设置报文头
+context.Response.AddHeader("Content-Disposition","attachment;filename=\"文件名\"");
+
+
+HttpUtility.UrlEncode();//编码，防止乱码

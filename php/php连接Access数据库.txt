@@ -1,0 +1,13 @@
+方法1
+
+<?php 
+$connstr="DRIVER={Microsoft Access Driver (*.mdb)}; DBQ=" . realpath("data.mdb"); 
+$connid=odbc_connect($connstr,"","",SQL_CUR_USE_ODBC); 
+$issuetime=date("Y-m-d H:i:s"); 
+$sql="insert into test values("","",...)"; 
+$result=odbc_exec($connid,$sql); 
+if($result) echo "successful"; 
+else echo "failed"; 
+?> 
+
+方法2

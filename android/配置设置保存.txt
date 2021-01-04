@@ -1,0 +1,10 @@
+
+保存
+SharePreferences p=context.getSharedPreferences("名称",Context.MODE_PRIVATE);
+Editor editor= p.edit();
+editor.putString("参数名称",name);
+editor.commit();
+
+读取
+SharePreferences p=context.getSharedPreferences("名称",Context.MODE_PRIVATE);
+p.getString("name","默认值");

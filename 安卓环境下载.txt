@@ -1,0 +1,10 @@
+eclipse
+http://www.eclipse.org/downloads/
+
+java jdk
+http://www.oracle.com/technetwork/java/javase/downloads/index.html
+
+Android SDK
+
+Android ADT
+http://developer.android.com/sdk/installing/installing-adt.html

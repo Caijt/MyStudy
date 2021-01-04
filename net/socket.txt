@@ -1,0 +1,41 @@
+连接过程相当于打电话给公司的计算机中心
+
+公司前台(服务端监听端口)
+
+客户端打电话到公司(客户端连接服务端端口)
+
+公司前台接听电话并转接电话到计算机中心(服务端重新创建socket与客户端连接)
+
+
+服务端代码
+IPAddress address=IPAddress.Parse("192.168.0.1");//服务端IP
+IPEndPoint endPoint=new IPEndPoint(address,8080);//IP节点，就是服务端IP加上端口
+
+Socket socketListen=new Socket(AddressFamily.InterNetwork,SocketType.Stream,ProtocolType.Tcp);//创建监听socket对象
+
+socketListen.Bind(endPoint);//监听socket对象绑定IP节点
+socketListen.Listen(10);//开始监听
+
+Socket socketConnection= socketListen.Accept();//从socket监听对象创建一个新的socket连接对象，这里会阻塞线程，这里用多线程
+
+客户端代码
+
+IPAddress address=IPAddress.Parse("192.168.0.1");//服务端IP
+IPEndPoint endPoint=new IPEndPoint(address,8080);//IP节点，就是服务端IP加上端口
+
+Socket sockeClient=new Socket(AddressFamily.InterNetwork,SocketType.Stream,ProtocolType.Tcp);//创建连接socket对象
+socketClient.Connect(endPoint);//连接服务端
+
+//通信
+//发送
+byte[] bytes=Encoding.UTF8.GetBytes("hello,word")//创建一个信息字节数组
+socketConnection.Send(bytes,0,byte.Length);//发送
+
+//接收，Receive方法会阻塞线程，最好用多线程来循环接收信息
+byte[] bytes=new byte[1024];//创建一个缓冲区
+int reLength=socketClient.Receive(bytes);//接收
+
+
+//如何发送文件
+ 
+

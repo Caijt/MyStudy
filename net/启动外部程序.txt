@@ -1,0 +1,20 @@
+命名空间
+using System.Diagnostics;
+
+private string appName = "程序地址";
+
+Process pro =Process.Start(appName);//启动程序并返回一个Process给pro变量
+
+pro.WaitForExit();//无限制等待程序关闭
+
+pro.Kill();//强制关闭程序
+
+ 
+pro.EnableRaisingEvents = true;//设置程序终止时是否触发pro.Exited事件
+
+proc.Exited += new EventHandler(pro_Exited);//事件赋值 
+
+void pro_Exited(object sender, EventArgs e)
+{
+}
+

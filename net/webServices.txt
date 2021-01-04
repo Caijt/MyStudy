@@ -1,0 +1,13 @@
+用XML传输数据
+http协议
+简单对象调用协议soap
+.asmx
+
+引用-服务引用-高级-添加WEB引用
+网站-添加WEB引用 
+
+
+添加WEB服务
+[WebMethod]
+
+asmx?wsdl

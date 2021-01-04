@@ -1,0 +1,42 @@
+
+验证
+
+<% Html.EnableClientValidation();%>启用验证
+System.ComponentModel.DataAnnotations;
+前台验证model里面加标签
+[RegularExpression("正则",ErrorMessage="")]
+[StringLength(,ErrorMessage="")]
+
+ER伙伴类
+[MetadataType(typeof(伙伴类))]
+public partial class 类名
+{
+}
+public class 伙伴类
+{
+	[验证标签]
+	public string Name{get;set;}
+}
+
+
+后台验证
+ModelState.IsValid
+
+
+ajax
+return Content("返回值");
+
+微软的AJAX
+<% using(Ajax.BeginForm(new AjaxOptions(HttpMethod=""))) { %>
+<% } %>
+
+路由
+mapRoute(string name,string url,object defaults,object constraints);
+
+name//路由名称，不能重复
+url//
+defaults//默认值
+constraints//参数约束 new{controller=@""\d{4}};
+
+全局文件里Application_Start
+

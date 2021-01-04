@@ -1,0 +1,22 @@
+//显式意图
+
+intent.setComponent();
+intent.setClassName();
+intent.setClass();
+
+//隐式意图
+意图过滤器
+<intent-filter>
+<action android:name="cn.golden_glass."/>//动作
+<category android:name=" "/>//类别
+<data android:scheme="golden_glass" android:host="golden_glass.cn" path="/it"/>
+<data android:mimeType=""/>
+</intent-filter>
+
+
+Intent intent=new Intent();
+intent.setAction("cn.golden_glass.");
+intent.addCategory();
+intent.setData(Uri.parse("golden_glass://golden_glass.cn/it"));
+intent.setDataAndType(Uri.parse("golden_glass://golden_glass.cn/it"),"");//同时设置数据和数据类型
+startActivity(intent);

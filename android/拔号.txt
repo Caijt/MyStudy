@@ -1,0 +1,12 @@
+Intent intent=new Intent();
+intent.setAction("android.intent.action.CALL");
+intent.setData(Uri.parse("tel:10086"));
+startActivity(intent);
+
+
+ Intent intent = new Intent(Intent.ACTION_CALL,Uri.parse("tel:"+number));  
+
+È¨ÏÞÂë
+<uses-permission android:name="android.permission.CALL_PHONE"/>
+android.permission.CALL_PHONE
+ 

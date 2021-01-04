@@ -1,0 +1,17 @@
+在drawable文件夹下新建frame.xml
+
+<animation-lit xmlns:android="http://schemas.android.com/apk/res/android"
+	android:oneshot="false" 是否只运行一次>
+	<item android:drawable="@drawable/" android:duration="200" />
+</animation-list>
+
+TextView textView=;
+textView.setBackgroundResource(R.drawable.frame);
+final AnimationDrawable drawable=()AnimationDrawable)textView.getBackground();
+
+getMainLooper().myQueue().addIdleHandler(new MessageQueue.IdleHandler(){
+	public boolean queueIdle(){
+		drawable.start();
+		return false;
+	}
+});

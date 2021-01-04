@@ -1,0 +1,10 @@
+Debug.startMethodTrading("test");//开始采集数据
+
+Debug.stopMethodTracing();//停止采集数据
+
+traceview c:\\test.trace //分析数据文件
+
+Incl Cpu Time //运行期间总调用时间	
+Calls+RecurCalls/Total //调用次数
+Cpu Time/Call //单次调用时间 
+Excl Cpu Time //不算方法里面的子方法的时间

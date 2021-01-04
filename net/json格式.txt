@@ -1,0 +1,7 @@
+var json={"key1":"value1","key2":"value2"};
+json.key1值为value2
+
+var json=eval(("字符串"))//将字符串转换成表达式执行，可以将返回的responseText转换成json对象
+
+JavaScriptSerializer().Serialize();//将list对象转换 成string
+

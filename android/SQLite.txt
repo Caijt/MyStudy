@@ -1,0 +1,35 @@
+
+pulic class DBHelper extends SQLiteOpenHelper{
+	pulic DBHelper(Context context){
+		super(context,"db.db",null,version);
+	}
+}
+
+
+getWritableDatabase()
+
+Cursor cursor= getReadableDatabase().rawQuery("select * from persons where id=? ",new String[]{} );
+if(cursor.moveToFirst())
+{
+ 	int id= cursor.getInt(cursor.getColumnIndex("id"));
+	string name= cursor.getString(cursor.getColumnIndex("name"));
+}
+
+while(cursor.moveToNext()){
+
+
+}
+
+cursor.close();
+
+使用事务
+db.beginTransaction();
+try
+{
+db.execSQL();
+db.execSQL();
+db.setTransxationSuccessful();调协事务的标志为true
+}finally
+{
+db.endTransaction();
+}

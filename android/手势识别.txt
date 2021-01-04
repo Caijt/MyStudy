@@ -1,0 +1,31 @@
+<android.gesture.GestureOverlayView
+	android:id="@+id/gestures"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent" 
+/>
+
+GestureLibray library=GestureLibraries.fromRawResource(this,R.raw.gestures);
+library.load();
+
+GestureOverlayView overlayView= (GestureOverlayView)this.findViewById(R.id.gestures);
+overlayView.addOnGesturePerformedListener();//增加单笔手势绘制完毕事件
+overlayView.addOnGestureListener();//单笔多笔绘制完毕事件
+
+private final class GesturePerformedListener implements OnGesturePerformedListener{
+
+	public void onGesturePerformed(GestureOverlayView overlay,Gesture gesture){
+		ArrayList<Prediction> predictions=library.recognize(gesture);//查找匹配的手势
+		if(!predictions.isEmpty()){
+			Prediction prediction = predictions.get(0);
+			prediction.score//匹配值0-10
+			prediction.name
+		}
+	}
+}
+
+
+关闭应用
+android.os.Process.killProcess(android.os.Process.myPid());
+
+android:gestureStrokeType="multiple"
+

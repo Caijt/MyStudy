@@ -1,0 +1,18 @@
+//动态删除select中的所有options：  
+function delAllOptions(){  
+      document.getElementById("user_dm").options.length=0;   
+}  
+  
+//动态删除select中的某一项option：   
+function delOneOption(indx){  
+      document.getElementById("user_dm").options.remove(indx);   
+}  
+  
+// 动态添加select中的项option:   
+function addOneOption(){  
+      //document.getElementById("user_dm").options.add(new Option("mytest"),2);   
+     
+   var selectObj=document.getElementById("user_dm");  
+   alert(selectObj.length);  
+   selectObj.options[selectObj.length] = new Option("mytest", "2");  
+}  

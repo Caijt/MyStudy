@@ -1,0 +1,50 @@
+
+∂¡»°
+XmlPullParser p=XmlPullParserFactory.newInstance().newPullParser();
+ªÚ
+XmlPullParser p= Xml.newPullParser();
+p.setInput(inPutstream,"UTFF-8");
+int event= p.getEventType();
+List<Person> persons=new ArrayList<Person>();
+Person person;
+while(event!=XmlPullParser.END_DOCUMENT){
+	switch(event){
+		case:XmlPullParser.START_TAG:
+		if("person".equals(p.getName()){
+			person=new Person();
+			int id=new Integer(p.getAttributeValue(0));
+		}else if("name".equals(p.getName()){
+			String text=p.nextText();
+		}
+		break;
+		case:XmlPullParser.END_TAG:
+		if("news".equals(p.getName()){
+			person.add();
+			person=null;
+		}
+		break;
+	}
+	event=p.next();
+}
+
+
+
+XmlPullParser.START_DOCUMENT
+
+±£¥Ê
+XmlSerializer s=Xml.newSerializer();
+s.setOutput(outputstream,"UTF-8");
+s.startDocument("UTF-8",true);
+s.startTag(null,"persons");
+for(Person p : persons){
+	s.startTag(null,"person");
+	s.attribute(null,"id",person.getId().toString());
+	s.startTab(null,"Name");
+	s.text(person.name);
+	s.endTab(null,"Name");
+	s.endTag(null,"person");
+}
+s.endTag(null,"persons");
+s.endDocument(); 
+outputstream.flush();
+outputstream.close();

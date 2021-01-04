@@ -1,0 +1,18 @@
+
+
+
+在子线程里
+Message msg=new Message(); 
+msg.getData().putInt("size",size);
+msg.what=1;
+handler.sendMessage(msg);
+//handler.sendMessage(handler.obtainMessage(1) );
+
+
+主线程里
+private Handler handler = new Handler();
+private final class UiHandler extens Handler{
+	public void handleMessage(Message msg){
+		
+	}
+}

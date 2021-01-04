@@ -1,0 +1,47 @@
+标签选择器
+hr
+{}
+
+类选择器
+.d1
+{}
+标签+类选择器
+label.d1
+{
+}
+
+
+id选择器
+#id
+{
+	color:red;
+	width:500px;
+	height:200px;
+}
+
+包含选择器（只要在DIV里面的任何STRONG标签都作用）
+div strong
+{
+	color:bule;
+}
+后代选择器（只作用于DIV的儿子）
+div > strong
+{
+	color:bule;
+}
+
+组合选择器（对多个标签同时样式）
+p,h1,h2,div
+{
+}
+
+伪选择器
+a:visited
+{
+}
+a:hover
+{
+}
+a:active
+{
+}

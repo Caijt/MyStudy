@@ -1,0 +1,19 @@
+Provider=Microsoft.Jet.OLEDB.4.0;" + "Data Source=" + Path + ";" + "Extended Properties=Excel 8.0;
+
+Á¬½Ó×Ö·û´®
+
+//2003£¨Microsoft.Jet.Oledb.4.0£©
+string strConn = string.Format("Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Extended Properties='Excel 8.0;HDR=Yes;IMEX=1;'", excelFilePath);
+
+//2007£¨Microsoft.ACE.OLEDB.12.0£©
+string strConn = string.Format("Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties='Excel 8.0;HDR=Yes;IMEX=1;'", excelFilePath);
+
+
+OleDbConnection conn = new OleDbConnection(strConn);
+conn.Open();
+DataSet ds = new DataSet();
+OleDbDataAdapter odda = new OleDbDataAdapter("select * from [Sheet1$]", conn);
+odda.Fill(ds, table);
+return ds;
+
+

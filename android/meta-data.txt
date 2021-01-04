@@ -1,0 +1,7 @@
+<meta-data android:name="name" android:value="cai"/>
+<meta-data android:name="id" android:resource="@string/hello"/>
+
+ActivityInfo activityInfo = this.getPackageManager().getActivityInfo(new ComponentName(this,MainActivity.class),PackageManager.GET_META_DATA);
+Bundle bundle=activityInfo.metaData();
+String name=bundle.getString("name");
+int id=bundle.getInt("id");

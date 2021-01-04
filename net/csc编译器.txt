@@ -1,0 +1,2 @@
+在net frameword 目录下执行cmd命令
+csc 文件名.cs

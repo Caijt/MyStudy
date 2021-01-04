@@ -1,0 +1,19 @@
+在layout下新建一个布局customTitle.xml
+
+
+requstWindowFeature(Window.FEATURE_CUSTOM_TITLE);
+setContentView(R.layout.main);
+getWindow().setFeatureInt(Window.FREATURE_CUSTOM_TITLE,R.layout.customTitle);
+
+<style name="myStyle" parent="android:Theme">
+	<item name="android:windowTitleSize">44dip</item>
+	<item name="android:windowTitleBackgroundStyle">@style/</item>
+	<item name="android:windowContentOverlay"></item>
+</style>
+
+<color name="transparent">#00000000</color>透明色
+<style name="backgroungStyle">
+	<item name="android:background">@drawable</item>
+</style>
+
+<activity android:name="" android:theme="@style/myStyle">

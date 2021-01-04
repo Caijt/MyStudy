@@ -1,0 +1,51 @@
+步骤如下：
+
+第一步：获取网页
+调用Webbrowser 的Navigate系列函数。等待网页装载完成，得到document对象。
+
+在调用 webBrowser.Document 之前，请确保 Webbrowser 网页装载完成，可以通过Webbrowser的DocumentCompleted事件进行监视。
+
+小技巧
+
+先指定一个变量：
+IsCompleted
+在调用Webbrowser 的Navigate，Refresh系列函数之前，将IsCompleted设为false。
+在DocumentCompleted事件中，如果 ReadyState 为 WebBrowserReadyState.Complete，则设IsCompleted为true.
+
+调用webBrowser.Document之前对IsCompleted进行判断。如果不为true，则延时循环等待，直到IsCompleted被设为true.
+
+第二步：设置网页元素数据
+
+确保得到document对象之后，通过 GetElementById 获取网页元素，如：
+
+HtmlElement user = webBrowser.Document.GetElementById("user");
+HtmlElement password = webBrowser.Document.GetElementById("password");
+
+设置网页元素值：
+
+user.InnerText = "myname";
+password.InnerText = "123456";
+
+小技巧
+作用 SetAttribute 设置下拉框，复选框，多选框数据
+
+下拉框：
+secret.SetAttribute("value", "question1");   
+复选框
+rememberme.SetAttribute("Checked", "True");
+多选框
+cookietime.SetAttribute("checked", "checked");
+
+当然，在SetAttribute 之前，也可以用GetAttribute取相关的属性先进行判断，再根椐需要进行设置。
+
+
+第三步：提交网页数据
+
+先取提交的按钮对象。
+HtmlElement submit = webBrowser.Document.GetElementById("submit");
+
+
+进行提交
+submit.InvokeMember("click");
+
+就是怎么简单。整个过程也就是 http get和post的过程。 

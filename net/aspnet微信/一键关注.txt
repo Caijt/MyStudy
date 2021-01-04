@@ -1,0 +1,47 @@
+本文介绍如何实现微信公众平台的一键关注功能。
+
+ gh_63a55fd89258
+
+一、使用HTTP协议
+
+<a href="http://weixin.qq.com/r/dnXk68HE5P_bh9CInyBS">点击关注方倍工作室</a>。
+ 
+
+二、使用weixin协议
+
+方法1：
+
+<a href="weixin://profile/gh_204936aea56d">点击关注方倍工作室</a>
+方法2：
+
+<a href="weixin://addfriend/pondbaystudio">点击关注方倍工作室</a>
+方法3：
+
+<a href="weixin://contacts/profile/gh_204936aea56d">点击关注方倍工作室</a> //测试有用
+ 
+
+三、使用JavaScript代码
+
+复制代码
+var addWxContact = function(wxid, cb)
+{
+    if (typeof WeixinJSBridge == 'undefined') return false;
+        WeixinJSBridge.invoke('addContact', {
+            webtype: '1',
+            username: 'gh_204936aea56d'
+        }, function(d) {
+            // 返回d.err_msg取值，d还有一个属性是err_desc
+            // add_contact:cancel 用户取消
+            // add_contact:fail　关注失败
+            // add_contact:ok 关注成功
+            // add_contact:added 已经关注
+            WeixinJSBridge.log(d.err_msg);
+            cb && cb(d.err_msg);
+        });
+};
+复制代码
+ 
+
+四、部分账号专用
+
+https://open.weixin.qq.com/subscribe?appid=wxb629c48b653e

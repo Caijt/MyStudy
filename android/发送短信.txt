@@ -1,0 +1,18 @@
+SmsManager manager=SmsManager.getDefault();
+ArrayList<String> texts=mamager.divideMessage();//分隔短信
+manager.sendTextMessage(手机号,null,短信内容,null,null);
+
+Toast.makeText(this,弹出信息,Toast.LENGTH_LONG).show();
+
+权限码
+ 
+<uses-permissionandroid:name="android.permission.SEND_SMS"/>
+
+
+调用系统短信界面
+Uri smsToUri = Uri.parse("smsto:10000");  
+  
+Intent intent = new Intent(Intent.ACTION_SENDTO, smsToUri);  
+ 
+intent.putExtra("sms_body", "content");  
+startActivity(intent);  

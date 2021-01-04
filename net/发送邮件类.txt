@@ -1,0 +1,20 @@
+using System.Net.Mail;
+
+MailMessage mail = new MailMessage();
+            mail.Subject = "邮件的标题";
+            mail.From = new MailAddress("发件人的邮箱@qq.com", "发件人");
+            mail.To.Add(new MailAddress("收件人1邮箱@qq.com", "收件人"));
+            mail.CC.Add(new MailAddress("抄送人1邮箱@qq.com","抄送人"));
+
+            mail.Body = "邮件的正文";
+
+
+
+            SmtpClient smtpMail = new SmtpClient();
+            smtpMail.Host = "smtp.golden-glass.cn";
+            smtpMail.Port = 25;
+            //smtpMail.UseDefaultCredentials = false;
+            smtpMail.Credentials = new System.Net.NetworkCredential("info@golden-glass.cn","密码");
+		smtpMail.IsBodyHtml=true;//可以设置是否按HTML输出
+            //smtpMail.DeliveryMethod = SmtpDeliveryMethod.Network;
+            smtpMail.Send(mail);

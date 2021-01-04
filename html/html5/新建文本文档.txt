@@ -1,0 +1,53 @@
+
+<canvas id="can1"></canvas>
+var can= document.getElementById("can1");
+var context=can.getContext("2d");
+
+
+context.fillStyle="#00FF00";//改变填充颜色
+context.strokeStyle="#";//设置线颜色
+context.lineWidth=2;//设置线粗
+
+//画直线
+context.moveTo(20,20);//设置第一个点
+context.lineTo(20,90);//设置第二个点
+context.stroke();//连接两个点
+
+//画三角形
+context.beginPath();//开始新路径
+context.moveTo(40,20);
+context.lineTo(40,90);
+context.lineTo(80,90);
+context.closePath();//闭合路径
+context.fill();//填充
+context.stroke();//画线
+
+//画矩形
+context.fillRect(20,20,40,40);//实心矩形
+context.stroke Rect(20,20,40,40);//空心矩形
+
+//画圆形
+context.beginPath();
+context.acr(250,80,20,0,360,true);//以x250,y80为圆心，半径20，从0度顺时针画到360度
+context.closePath();
+context.stroke();//空心
+context.fill();//实心
+
+//画图片
+var img=new Image();
+img.src="asdf.jpg";
+img.onLoad=function(){
+	context.drawImage(img,20,100,200,150);
+}
+
+//画字
+var text="蔡锦钿";
+context.font="30px 宋体";
+context.fillText(text,200,20);
+
+
+context.clearRect();//清空矩形里的图像
+
+
+对象继承
+function Animal(){}

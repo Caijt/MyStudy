@@ -1,0 +1,25 @@
+input
+
+type
+
+text 文本框
+
+password 密码框
+
+checkbox 复选框
+
+radio 单选框
+
+image 图片
+
+submit 提交
+
+reset 重置
+
+value
+
+name
+
+size
+
+maxlength

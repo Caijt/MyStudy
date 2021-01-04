@@ -1,0 +1,18 @@
+class Earth
+{
+	private static Earth instance=new Earth();
+	private Earth()//把构造函数声明为私有的
+	{
+	}
+	
+	public static Earth GetEarth()
+	{
+		return instance;
+	}	
+
+}
+
+
+Earth earth= Earth.GetEeath();
+
+一个程序中只能调用一个earth类

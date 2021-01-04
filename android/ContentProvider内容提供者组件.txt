@@ -1,0 +1,43 @@
+public class PersonProvider extends ContentProvider{
+
+
+}
+
+清单文件中
+application节点下
+<provider 
+	android:name=".PersonProvider" 
+	android:authorities="providers.person"
+/>
+
+Uri
+Uri uri=Uri.parse("content://providers.person/");
+UriMatcher m=new UriMatcher(UriMatcher.NO_MATCH);//Uri匹配
+static{
+	m.addURI("providers.person","person",1);//
+}
+
+ContentUris.withAppendedit(uri,id);//Uri拼接
+ContentUris.parseId(uri);//得到uri最后的id
+
+switch(m.match(uri)){
+
+case 1:
+	break;
+default:
+	throw new IllegalArgumentException("this is Unknown");
+}
+
+
+public string getType(Uri uri){
+
+return "vnd.android.cursor.dir/person";//代表多条数据
+return "vnd.android.cursor.item/person";//代表单条
+}
+
+访问内容提供者
+Uri uri=new Uri("content://providers.person/person");
+ContentResolver resolver=this.getContext().getContentResolver();
+ContentValues values=new ContentValues();
+values.put("name","asdf");
+resolver.insert(uri,values );

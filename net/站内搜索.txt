@@ -1,0 +1,70 @@
+Lucene.Net
+
+添加Lucene.Net.dll引用
+
+
+分词
+Analyzer ana=new StandardAnalyzer();//
+Analyzer ana=new CJKAnalyzer();//二元分词
+Analyzer ana=new PanGuAnalyzer();盘古分词
+TokenStream tokenStream=ana.TokenStream("",new StringReader("待分词的文本"));
+Lucene.Net.Analysis.Token token=null;
+while((token=tokenStream.Next())!=null)
+{
+	token.TermText();
+}
+
+添加PanGu.dll引用
+PanGu.Lucene.Analyzer.dell的引用
+
+PanGu4Lucene\WebDemo\Bin 将Dictionaries添加到项目根路径改名为Dict，设置复制到输出目录为如果较新则复制
+
+Directory 索引库
+
+FSDirectory
+RAMDirectory
+
+FSDirectory dir=FSDirectory.Open(new DirectoryInfo(indexPath),new NativeFSLockFactory())
+
+Document doc=new Document();
+doc.Add(new Field(string name,string value,Field.Store store,Field.Index index,Field.TermVector termVector));
+ 
+store是否存储原值
+index Field.Index.NOT_ANALYZED不创建索引 Field.Index.ANALYZED创建索引
+termVector 索引距离
+
+IndexReader 索引读取
+IndexReader.IndexExists()判断目录是否是一个索引目录
+IndexReaer reader=IndexReader.Open(dir,true);
+
+IndexWriter 索引写入
+
+IndexWriter writer=new IndexWriter(Directory dir,Analyzer a,bool create,MaxFieldLength mfl)//create是否创建目录
+
+IndexWriter.IsLocked()判断目录是否锁定
+IndexWriter.Unlock() 解锁
+writer.Add(document);//往索引文件添加
+writer.DeleteDocuments(new Term("字段名",sdf))
+
+索引搜索
+IndexSearcher search=new IndexSearch(IndexReader);
+search.Search(Query query,Filter filter,Collector results)
+Collector coll=TopScoreDocCollector.create(1000,true)创建一个Collector
+PhraseQuey query=new  PhraseQuey();
+query.Add(new Term("字段名",));
+query.SetSlop()设置关键词的最大距离
+
+ScoreDoc[] docs= coll.TopDocs(0,collector.GetTotalHits()).scoreDocs;
+int docId= docs[i].doc;
+Document doc=search.Doc(docId);
+doc.Get("字段名");
+
+
+
+
+盘古高亮显示
+引用PanGuHighLight.dll
+PanGu.HighLight.SimpleHTMLFormatter simpleHTMLFormatter=new PanGu.HighLight.SimpleHTMLFormatter("<font color='red'>","</font>");
+PanGu.HighLight.Highlighter high=new PanGu.HighLight.Highlighter(simpleHTMLFormatter,new Segment());
+highlighter.FragmentSize=50;//摘要的字数
+string body= highlighter.GetBestFragment("关键字","内容");

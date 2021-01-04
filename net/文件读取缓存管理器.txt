@@ -1,0 +1,51 @@
+//文件读取缓存管理器，如果文件未读取过，则进行读取，并保存在对象中，下次读取时直接在对象中调用；
+//声明一个单例类
+
+class FileCache
+{
+	private static FileCache fc;
+	private FileCache()
+	{
+	}
+	public static FileCache GetFileCache()
+	{
+		if(fc==null)
+		{
+			fc=new FileCache();
+		}
+		return fc;
+	}
+	private Dictionary<string,CacheInfo> dic=new Dictionary<string ,CacheInfo>();
+	public string ReadFile(string fileName)
+	{
+		if(!dic.ContainsKey(fileName))//判断文件是否已读取过
+		{
+			CacheInfo ci=new CacheInfo();
+			DateTime fileTime= File.GetLastWriteTime(fileName);
+			fileContent=File.ReadAllText(fileName);
+			ci.fileTime=fileTime;
+			ci.fileContent=fileContent;
+			return fileConent;
+		}
+		else
+		{
+			DateTime fileTime= File.GetLastWriteTime(fileName);
+			if(dic[fileName].fileTime!=fileTime)//判断文件是否修改过
+			{
+				dic[fileName].fileTime=fileTime;	
+				dic[fileName].fileContent=File.ReadAllText(fileName);
+			}
+   			return dic[fileName].fileContent;
+		}
+		
+	}
+}
+
+class CacheInfo
+{
+	public DateTime fileTime {get;set;}
+	public string fileContent {get;set;}
+}
+
+调用:
+string txt= FileCache.GetFileCache().ReadFile(@"c:\*.txt");
