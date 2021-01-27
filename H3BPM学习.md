@@ -8,8 +8,6 @@ $.MvcSheetUI.SetControlValue("fieldName",value,rownum)
 //表单验证事件
 $.MvcSheet.Validate = function () {}
 
-
-
 //同步两个明细表，把Details的明细表数据同步到Details2的明细表中
 var data = $.MvcSheetUI.GetControlValue("Details");
 var m = $("#Details2").SheetUIManager();
